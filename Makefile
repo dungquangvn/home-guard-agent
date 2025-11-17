@@ -13,3 +13,6 @@ make classes:
 
 make crop:
 	PYTHONPATH=. $(PYTHON) src/modules/recognition/face_cropper.py
+
+make plate:
+	PYTHONPATH=. $(PYTHON) src/modules/recognition/plate_recognitor.py

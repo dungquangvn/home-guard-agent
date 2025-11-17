@@ -61,3 +61,11 @@ class LicensePlateRecognizer:
 
         return license_texts
         
+if __name__ == "__main__":
+    recognizer = LicensePlateRecognizer(threshold_conf=0.5)
+    test_image = cv2.imread("data/plate_number_3.png", cv2.IMREAD_COLOR)
+    cv2.imshow("Test Image", test_image)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    plates = recognizer.detect_license_plates(test_image)
+    print("Detected License Plates:", plates)
