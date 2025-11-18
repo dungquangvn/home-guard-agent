@@ -3,11 +3,18 @@ from src.modules.recognition.face_cropper import FaceCropper
 from src.modules.camera.camera import Camera
 import time
 import cv2
+import os
 
 async def main():
-    cam = Camera(source="data/test_vid.mp4")  # 66.67ms/frame
+    cam = Camera(source="data/test_img.jpg")  # 66.67ms/frame
     cropper = FaceCropper(conf=0.5)
-    start = time.time()
+    start = time.time() 
+
+# phần bổ sung của tvh -------------------------
+    OUTPUT_DIR = "cropped_faces"  
+    os.makedirs(OUTPUT_DIR, exist_ok=True)  
+    face_id_counter = 0  
+# hếtphần bổ sung của tvh -------------------------
     
     while True:
         
