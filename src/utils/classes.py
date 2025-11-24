@@ -5,15 +5,21 @@ import numpy as np
 class Detection:
     def __init__(
         self, 
-        id: Optional[int] = None,
+        bbox: Tuple[int, int, int, int],    # x, y, w, h
+        # image: np.ndarray,
+        # original_image: Optional[np.ndarray] = None,
+        tracker_id: int | None = -1,                    # Là id tracker gán
+        identity_id: int | None = -1,                   # Là id trong database, recognitor gán
         type: str = "unknown", 
-        bbox: Tuple[int, int, int, int] = (0, 0, 0, 0),    # x, y, w, h
-        confidence: float = 1.0,
+        confidence: float = 0.5,
         is_strange: bool = False
     ):
-        self.id = id
+        self.tracker_id = tracker_id
+        self.identity_id = identity_id
         self.type = type
         self.bbox = bbox
+        # self.image = image
+        # self.original_image = original_image
         self.confidence = confidence
         self.is_strange = is_strange
 
@@ -22,8 +28,8 @@ class Detection:
 
 
 class Person(Detection):
-    def __init__(self, name: str = "Unknown", id: Optional[int] = None, bbox: Tuple[int, int, int, int] = (0, 0, 0, 0), is_strange: bool = False, confidence: float = 1.0):
-        super().__init__(id=id, type="person", confidence=confidence, bbox=bbox, is_strange=is_strange)
+    def __init__(self, bbox: Tuple[int, int, int, int], name: str = "Unknown", id: Optional[int] = None, is_strange: bool = False, confidence: float = 1.0):
+        super().__init__(identity_id=id, type="person", confidence=confidence, bbox=bbox, is_strange=is_strange)
         self.name = name
 
     def __repr__(self):
@@ -31,8 +37,8 @@ class Person(Detection):
 
 
 class Vehicle(Detection):
-    def __init__(self, vehicle_type: str = "car", plate_number: str = "Unknown", id: Optional[int] = None, bbox: Tuple[int, int, int, int] = (0, 0, 0, 0), is_strange: bool = False, confidence: float = 1.0):
-        super().__init__(id=id, type=vehicle_type, confidence=confidence, bbox=bbox, is_strange=is_strange)
+    def __init__(self, bbox: Tuple[int, int, int, int], vehicle_type: str = "car", plate_number: str = "Unknown", id: Optional[int] = None, is_strange: bool = False, confidence: float = 1.0):
+        super().__init__(identity_id=id, type=vehicle_type, confidence=confidence, bbox=bbox, is_strange=is_strange)
         self.plate_number = plate_number
 
     def __repr__(self):
