@@ -5,3 +5,6 @@ mediapipe
 onnxruntime
 ultralytics
 openmim
+opencv-python
+simpleaudio 
+secure-smtplib 
