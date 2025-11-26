@@ -1,64 +1,56 @@
-async on_new_person(face_cropper, face_recognitor, state):
-    async def handler(event):
-        detections: List[Detection] = object_detector.detect(frame_data)
-            tracked_detections = object_tracker.update(detections)                # gán id tracking
-            for detection in detections:
-                # Crop ảnh theo bbox detection
-                x, y, w, h = detection.bbox
-                frame_img = frame_data.get_image()
-                img = frame_img[y:y+h, x:x+w]
-                if detection.type == 'person':
-                    # Cố gắng crop mặt
-                    face_images_list: List[Dict] = await face_cropper.crop_faces(img)
-                    
-                    person_data = {
-                        'id': 999,
-                        'name': 'unknown',
-                        'confidence': 0.5,
-                        'is_strange': True
-                    }
-                    # Nếu k thấy mặt
-                    if len(face_images_list) == 0:
-                        # Dùng thân người
-                        pass
-                    
-                    # Nếu có mặt -> lấy mặt đầu
-                    face_image = face_images_list[0].get('face_image')
-                    
-                    person_id, name, confidence, is_strange, _ = face_recognitor.recognize(face_image)
-                    
-                    person = Person(
-                        bbox=detection.bbox,
-                        name=name,
-                        id=person_id,
-                        confidence=confidence,
-                        is_strange=is_strange
-                    )
-                    
-                    frame_data.add_object(person)
-                
-                elif detection.type in ['car', 'motorcycle']:
-                    plate_number_list: List[Dict] = plate_recognitor.recognize(img)
-                    if len(plate_number_list) == 0:
-                        # skip
-                        pass
-                    plate_number = plate_number_list[0].get('plate_number')
-                    for (id, familiar_plate_number) in FAMILIAR_PLATE_NUMBER_DICT.items():
-                        if familiar_plate_number == plate_number:
-                            vehicle = Vehicle(
-                                vehicle_type=detection.type,
-                                plate_number=plate_number,
-                                id=id,
-                                is_strange=False,
-                                confidence=plate_number_list[0].get('confidence')
-                            )
-                            frame_data.add_object(vehicle)
-                        else:
-                            vehicle = Vehicle(
-                                vehicle_type=detection.type,
-                                plate_number=plate_number,
-                                id=-200 - detection.tracker_id,            # gán id unknown
-                                is_strange=True,
-                                confidence=0.5
-                            )
-                            frame_data.add_object(vehicle)
+from src.modules.recognition.face_recognitor import FaceRecognitor
+from src.core.state_manager import StateManager
+from src.modules.logging.logger import Logger
+
+def on_new_person(face_recognitor: FaceRecognitor, logger: Logger, state_manager: StateManager):
+    """
+    Handler cho event "new_person".
+    Event format:
+    {
+        "event": "new_person",
+        "data": Detection,
+        "frame": FrameData
+    }
+    """
+
+    def handler(event):
+        detection = event["data"]
+        frame_image = event["frame"].get_image()
+        bbox = detection.bbox
+        x, y, w, h = bbox
+        
+        logger.info(f"Phát hiện người mới tại ({x}, {y}), cố gắng nhận diện...")
+        
+        height, width = frame_image.shape[:2]
+        x1 = max(0, int(x))
+        y1 = max(0, int(y))
+        x2 = min(width, int(x + w))
+        y2 = min(height, int(y + h))
+        person_image = frame_image[y1:y2, x1:x2, :]
+
+
+        # Cố gắng nhận diện
+        people = face_recognitor.recognize_faces([person_image])
+        identity_id = people[0]['identity_id']
+        name = people[0]['name']
+        score = people[0]['score']
+        
+        detection.identity_id = identity_id
+        detection.type = "person"
+        detection.confidence = score
+        detection.is_strange = (name == "Unknown")
+        
+        detection.is_processing = False
+        detection.is_recognized = True
+
+        # Xử lý dựa vào kết quả nhận diện
+        if detection.is_strange:
+            logger.info(f"[Person {detection.tracker_id}] Người lạ xuất hiện (không nhận diện được)")
+        else:
+            logger.info(
+                f"[Person {detection.tracker_id}] Người quen: {identity_id} (score={score:.2f})"
+            )
+            
+        state_manager.update(detection)
+
+    return handler

@@ -1,6 +1,6 @@
 import asyncio
 import time
-from AnalysisTask import AnalysisTask
+from src.modules.analysis.AnalysisTask import AnalysisTask
 class Analysis:
     __instance = None
     __isInitialized = False
@@ -101,6 +101,6 @@ async def case_3():
     analysis.checkManageredTasks()
 
 
-asyncio.run(case_1())
+# asyncio.run(case_1())
 
    

@@ -14,7 +14,7 @@ base_path = "data/faces"  # ví dụ: data/faces/Binh/...
 face_db = {}
 
 # Đi qua từng folder người quen
-for person_name in os.listdir(base_path):
+for idx, person_name in enumerate(os.listdir(base_path)):
     person_folder = os.path.join(base_path, person_name)
     if not os.path.isdir(person_folder):
         continue
@@ -44,8 +44,14 @@ for person_name in os.listdir(base_path):
     if embeddings:
         avg_emb = np.mean(embeddings, axis=0)
         avg_emb /= np.linalg.norm(avg_emb)  # normalize
-        face_db[person_name] = avg_emb
-        print(f"Đã lưu embedding cho: {person_name}")
+
+        # Lưu cả id và embedding
+        face_db[idx] = {
+            "id": 1000 + idx,
+            "name": person_name,
+            "embedding": avg_emb
+        }
+        print(f"Đã lưu embedding cho: {person_name} (id={1000 + idx})")
 
 # Lưu database ra file bằng pickle
 with open("models/face_db.pkl", "wb") as f:
