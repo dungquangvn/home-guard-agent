@@ -22,7 +22,8 @@ while True:
         results = model.track(frame_data.get_image(), persist=True)
         
         if frame_data.get_id() == 151:
-            print(results[0])
+            print('results[0]: ', results[0])
+            print('results[0].boxes: ', results[0].boxes)
 
         # Visualize the results on the frame
         annotated_frame = results[0].plot()

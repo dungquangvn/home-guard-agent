@@ -12,7 +12,6 @@ class FaceCropper:
         self.conf = conf
         
     async def _detect(self, image: np.ndarray):
-        """Phát hiện nhanh"""
         results = self.detector.predict(image)
         
         faces_list = []

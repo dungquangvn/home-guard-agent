@@ -1,0 +1,4 @@
+FAMILIAR_PLATE_NUMBER_DICT = {
+    '201': '19s2-45678',
+    '202': '19s1-37994'
+}
