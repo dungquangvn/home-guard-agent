@@ -15,5 +15,6 @@ camera:
 classes:
 	PYTHONPATH=$(PYTHONPATH) $(PYTHON) src/utils/classes.py
 
+
 crop:
 	PYTHONPATH=$(PYTHONPATH) $(PYTHON) src/modules/recognition/face_cropper.py
