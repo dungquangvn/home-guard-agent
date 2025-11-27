@@ -13,6 +13,9 @@ class Camera:
         if not self.cap.isOpened():
             raise ValueError(f"Không thể mở camera/video từ nguồn: {source}")
         self.frame_id = 0
+        self.fps = self.cap.get(cv2.CAP_PROP_FPS)
+        self.width = int(self.cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        self.height = int(self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
     def get_frame(self):
         """Đọc 1 frame từ camera và trả về FrameData"""
@@ -22,6 +25,7 @@ class Camera:
         
         self.frame_id += 1
         return FrameData(frame_id=self.frame_id, image=frame)
+    
 
     def release(self):
         """Giải phóng camera"""

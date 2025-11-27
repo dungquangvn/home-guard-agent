@@ -10,6 +10,7 @@ from src.modules.logging.logger import Logger
 from src.modules.recognition.face_cropper import FaceCropper
 from src.modules.recognition.face_recognitor import FaceRecognitor
 # from src.modules.recognition.plate_recognitor import PlateRecognitor
+from src.modules.video_recorder.video_recorder import VideoRecorder
 from src.core.event_extractor import EventExtractor
 from src.core.event_bus import EventBus
 from src.core.state_manager import StateManager
@@ -18,11 +19,16 @@ from src.event_handlers.on_new_person import on_new_person
 # from src.event_handlers.on_object_left import on_object_left
 # from src.event_handlers.on_is_stranger import on_is_stranger
 # from src.event_handlers.on_stranger_over_30_seconds import on_stranger_over_30_seconds
-from src.utils.classes import Detection, Person, Vehicle
+from src.utils.classes import Detection
         
 async def main():
-    # cam = Camera(source="data/test_vid.mp4")  # 66.67ms/frame. source 0 là camera máy tính
+    # cam = Camera(source="data/test_vid.mp4")
     cam = Camera(source="data/vid_1.mp4")
+    video_recorder = VideoRecorder(
+        fps=cam.fps,
+        width=cam.width,
+        height=cam.height,
+    )
     
     tracker = YOLO('models/yolo11n.pt')
 
@@ -75,11 +81,13 @@ async def main():
         for det in newest_detections:    
             frame_data.add_object(det)
             
+        video_recorder.write(frame_data.image)
+            
         cv2.imshow("AI-CAM", frame_data.image)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         
-
+    video_recorder.release()
     cam.release()
     
 if __name__ == '__main__':

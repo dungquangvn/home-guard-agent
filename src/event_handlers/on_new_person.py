@@ -37,15 +37,18 @@ def on_new_person(face_recognitor: FaceRecognitor, logger: Logger, state_manager
         
         detection.identity_id = identity_id
         detection.type = "person"
+        detection.name = name
         detection.confidence = score
         detection.is_strange = (name == "Unknown")
         
-        detection.is_processing = False
         detection.is_recognized = True
+        detection.is_processing = False
 
         # Xử lý dựa vào kết quả nhận diện
         if detection.is_strange:
-            logger.info(f"[Person {detection.tracker_id}] Người lạ xuất hiện (không nhận diện được)")
+            logger.info(
+                f"[Person {detection.tracker_id}] Người lạ xuất hiện (không nhận diện được)"
+            )
         else:
             logger.info(
                 f"[Person {detection.tracker_id}] Người quen: {identity_id} (score={score:.2f})"

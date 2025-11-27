@@ -31,7 +31,7 @@ class StateManager:
             det.first_seen = now
             det.last_seen = now
             det.is_recognized = False
-            det.is_processing = False
+            det.is_processing = True
 
             self.objects[tid] = det
 
