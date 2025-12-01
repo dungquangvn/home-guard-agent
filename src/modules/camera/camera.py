@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from src.utils.classes import FrameData
+from utils.classes import FrameData
 
 class Camera:
     def __init__(self, source=0):
