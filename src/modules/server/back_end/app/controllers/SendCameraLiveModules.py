@@ -11,7 +11,8 @@ class SendCameraLiveModules:
             cls.__instance = super().__new__(cls)
         return cls.__instance
     
-    #Tham số đầu vào là hàm trả về các frame của một video trực tiếp, lưu ý là không có tham số
+    #Tham số đầu vào là hàm trả về các frame của một video trực tiếp, lưu ý là hàm này không có tham số
+    # và kiểu dữ liệu của frame là numpyarray(nd)
     def __init__(self, frame_provider):
         if not self.__isInitialized: 
             self._frame_provider = frame_provider
