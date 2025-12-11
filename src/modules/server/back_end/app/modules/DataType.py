@@ -13,3 +13,8 @@ class RecordedVideoData:
     title: str
     extractedTime: str
     videoUrl: str
+
+@dataclass
+class AlertData:
+    id: str
+    ms: str

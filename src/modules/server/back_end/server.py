@@ -1,14 +1,16 @@
-from flask import Flask, Response, render_template_string
+from flask import Flask, Response,  request, jsonify
 import threading
 import time
-import cv2
 import os
 from dotenv import load_dotenv
 from ...camera.camera import Camera
 from ..back_end.app.controllers.SendCameraLiveModules import SendCameraLiveModules
 from ..back_end.app.controllers.SendLogsModules import SendLogsModules
 from ..back_end.app.controllers.SendRecordsCameraModules import SendRecordsCameraModules
+from ..back_end.app.controllers.LongPollingModules import LongPollingModules
+from .app.modules.DataType import AlertData
 from flask_cors import CORS
+
 
 
 #set up
@@ -20,9 +22,11 @@ static_path = os.getenv("BACK_END_STATIC_FOLDER_URL")
 app = Flask(__name__, static_folder="static", static_url_path="/static")
 
 CORS(app)
+current_client_id = None
 
 # Router
 
+#http
 @app.route('/')
 def index():
     return "Server is running!"
@@ -50,10 +54,35 @@ def sendVideoRecords():
     video_record_module = SendRecordsCameraModules(recorded_videos_folder_path)
     return video_record_module.getVideoRecords()
 
-# Utilitizes functions
+@app.route("/poll")
+def poll():
+    global current_client_id
+    client_id = request.args.get("client_id")
+    current_client_id = client_id
 
-def run_server(host='0.0.0.0', port=5000):
-    app.run(host=host, port=port, threaded=True)
+    if client_id is None:
+        return "Require client id!"
+
+    long_polling = LongPollingModules()
+
+    long_polling.addClientId(client_id)
+
+    message_queue = long_polling.getLongPollingOfSpecifiedClient(client_id)
+    
+    timeout = 30 
+    start = time.time()
+
+    while time.time() - start < timeout:
+        try:
+            msg = message_queue.get_nowait()
+            return jsonify({"has_message": True, "message": msg})
+        except:
+            time.sleep(0.1)
+    
+    return jsonify({"has_message": False, "message": None})
+
+
+# Utilitizes functions
 
 
 def provider(cam: Camera):
@@ -62,17 +91,30 @@ def provider(cam: Camera):
         return None
     return frame.image
 
-#Test
+#Test cách gửi thông báo cho clients
+def detect_stranger():
+    index = 0
+
+    #Dùng LongPollingModules
+    long_polling = LongPollingModules()
+
+    while True:
+        if not long_polling.isNotHavingClients():
+            time.sleep(10)
+            print("check current client id: ", current_client_id)
+            if current_client_id is not None:
+                #sau đó dựa vào id của client + truyền thông báo dưới dạng AlertData để thông báo cho clients
+                long_polling.sendMsgToClient(current_client_id, AlertData(id=index, ms="Detect stranger!"))
+            
+            index += 1
+        else:
+            time.sleep(0.1)
+
 
 if __name__ == "__main__":
-    print("Run main")
+    threading.Thread(target=detect_stranger, daemon=True).start()
+    app.run(host="127.0.0.1", port=5000)
 
-    server_thread = threading.Thread(
-        target=run_server,
-        kwargs={'host': host, 'port': port},
-        daemon=False
-    )
+    
 
-    server_thread.start()
-    server_thread.join()
 
