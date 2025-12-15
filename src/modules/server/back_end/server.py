@@ -2,16 +2,20 @@ from flask import Flask, Response,  request, jsonify
 import threading
 import time
 import os
+import cv2
 from dotenv import load_dotenv
-from ...camera.camera import Camera
-from ..back_end.app.controllers.SendCameraLiveModules import SendCameraLiveModules
-from ..back_end.app.controllers.SendLogsModules import SendLogsModules
-from ..back_end.app.controllers.SendRecordsCameraModules import SendRecordsCameraModules
-from ..back_end.app.controllers.LongPollingModules import LongPollingModules
+from src.modules.camera.camera import Camera
+from src.modules.server.back_end.app.controllers.SendCameraLiveModules import SendCameraLiveModules
+from src.modules.server.back_end.app.controllers.SendLogsModules import SendLogsModules
+from src.modules.server.back_end.app.controllers.SendRecordsCameraModules import SendRecordsCameraModules
+from src.modules.server.back_end.app.controllers.LongPollingModules import LongPollingModules
 from .app.modules.DataType import AlertData
 from flask_cors import CORS
+import numpy as np
+from multiprocessing import Queue, Process
 
-
+# Biến toàn cục để lưu trữ Queue (sẽ được truyền vào khi chạy Process)
+frame_queue = None
 
 #set up
 load_dotenv()
@@ -31,15 +35,52 @@ current_client_id = None
 def index():
     return "Server is running!"
 
+# @app.route('/video')
+# def video_feed():
+#     cam = Camera(source="data/test_vid.mp4")
+#     if cam is not None:
+#         module = SendCameraLiveModules(lambda: provider(cam=cam))
+#         return Response(module.gen_mjpeg(),
+#                     mimetype='multipart/x-mixed-replace; boundary=frame')
+#     else:
+#         return "Error: cant get camera live because camera is None"
+
 @app.route('/video')
 def video_feed():
-    cam = Camera(source="data/test_vid.mp4")
-    if cam is not None:
-        module = SendCameraLiveModules(lambda: provider(cam=cam))
-        return Response(module.gen_mjpeg(),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
-    else:
-        return "Error: cant get camera live because camera is None"
+    """Endpoint trả về video stream (Motion JPEG)."""
+    
+    # Kiểm tra Queue đã được thiết lập chưa
+    if frame_queue is None:
+        return "Queue not initialized!", 500
+
+    def gen():
+        while True:
+            # Lấy frame mới nhất từ Queue. 
+            # Dùng try-except để tránh lỗi nếu Queue trống
+            try:
+                # Dùng non-blocking get() với timeout ngắn
+                # để server không bị chặn quá lâu
+                frame = frame_queue.get(timeout=0.1) 
+            except:
+                # Nếu Queue trống, chờ một chút rồi thử lại
+                time.sleep(0.03) 
+                continue
+
+            # Mã hóa frame (numpy array) sang JPEG
+            _, jpeg = cv2.imencode('.jpg', frame)
+            frame_bytes = jpeg.tobytes()
+
+            # Trả về frame theo chuẩn Motion JPEG
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
+            
+            # (Không cần time.sleep(0.03) ở đây vì tốc độ được kiểm soát 
+            # bởi tốc độ frame được put vào Queue và tốc độ mạng)
+
+    return Response(
+        gen(),
+        mimetype='multipart/x-mixed-replace; boundary=frame'
+    )
 
 @app.route('/logs', methods=['GET'])
 def sendLogs():
@@ -110,11 +151,13 @@ def detect_stranger():
         else:
             time.sleep(0.1)
 
+def start_server(queue: Queue, host='127.0.0.1', port=5000):
+    """Hàm chạy Flask server trong một tiến trình riêng."""
+    global frame_queue
+    frame_queue = queue
+    # Đặt use_reloader=False để tránh server chạy hai lần
+    app.run(host=host, port=port, debug=False, use_reloader=False)
 
-if __name__ == "__main__":
-    threading.Thread(target=detect_stranger, daemon=True).start()
-    app.run(host="127.0.0.1", port=5000)
-
-    
-
-
+# if __name__ == "__main__":
+    # threading.Thread(target=main, daemon=True).start()
+    # app.run(host="127.0.0.1", port=5000)

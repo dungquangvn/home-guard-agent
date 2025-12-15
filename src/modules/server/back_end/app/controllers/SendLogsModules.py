@@ -1,34 +1,71 @@
 from flask import jsonify
 from ..modules.DataType import LogsData
+import os
+import json
+
+LOG_FILE_PATH = "logs/system.log"
+
 
 class SendLogsModules:
     __instance = None
     __isInitialized = False
     __logs = []
+    __last_modified_time = 0 # Thêm thuộc tính lưu thời gian sửa đổi file
 
     def __new__(cls, *args, **kwargs):
         if not cls.__instance:
             cls.__instance = super().__new__(cls)
         return cls.__instance
+        
     def __init__(self):
         if not self.__isInitialized: 
             self.__isInitialized = True
+            
+    def _read_logs_from_file(self):
+        """Hàm đọc tất cả log từ file JSON Line-by-Line."""
+        new_logs = []
+        if not os.path.exists(LOG_FILE_PATH):
+            return new_logs
 
-    # Lấy logs từ file của server, nhớ kiểm tra xem liệu file có sự thay đổi không, 
-    # nếu có thì truy xuất lại logs trong file và lưu vào biến static __logs của lớp này
-    # nếu không thì không cần truy xuất lại logs trong file
+        try:
+            with open(LOG_FILE_PATH, "r", encoding="utf-8") as f:
+                for line in f:
+                    # Đọc mỗi dòng là 1 đối tượng JSON
+                    if line.strip(): # Bỏ qua dòng trống
+                        log_dict = json.loads(line)
+                        # Chuyển dictionary thành đối tượng LogsData
+                        new_logs.append(LogsData(**log_dict)) 
+            return new_logs
+        except Exception as e:
+            print(f"Error reading or parsing log file: {e}")
+            return []
+
+
     def getLogs(self):
+        # 1. Kiểm tra sự thay đổi của file
+        if os.path.exists(LOG_FILE_PATH):
+            current_modified_time = os.path.getmtime(LOG_FILE_PATH)
+            
+            # Nếu thời gian sửa đổi file đã thay đổi (hoặc là lần đầu tiên đọc)
+            if current_modified_time > self.__last_modified_time:
+                print("Log file changed. Reloading logs...")
+                
+                # Cập nhật thời gian sửa đổi
+                self.__last_modified_time = current_modified_time
+                
+                # Tải lại logs
+                self.__logs = self._read_logs_from_file()
+            else:
+                print("Log file not changed. Using cached logs.")
+        else:
+            # File không tồn tại
+            self.__logs = []
+            self.__last_modified_time = 0
 
-        # ae viết code trích xuất dữ liệu từ file log ở đây
-        # file logs ở server thì ae nên lưu dưới dạng mảng json nha
-        # mảng json này thì sẽ gồm các đối tượng LogsData nha ae, ae xem ở path app/modules/DataType.py nha
 
-
-        # phần dưới test cho ae 
-        logs_data = [LogsData(id= "1", title="Camera Started", description="System boot OK", time="2025-12-05 10:21:00"),
-                     LogsData(id= "2",title="Motion Detected", description="Movement at gate", time="2025-12-05 10:22:18")]
-
-        self.__logs = logs_data
-
-        return jsonify(self.__logs)
+        # 2. Chuyển đổi danh sách đối tượng LogsData thành định dạng có thể jsonify
+        # Dùng list comprehension để chuyển về dict trước khi jsonify
+        logs_for_json = [log.__dict__ for log in self.__logs] 
+        
+        return jsonify(logs_for_json)
 

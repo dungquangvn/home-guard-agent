@@ -1,133 +1,72 @@
-[2025-12-13 23:28:30] [INFO] [EVENT] Người lạ xuất hiện. ID=2
-[2025-12-13 23:28:34] [INFO] [TIMEOUT] Không nhận diện được sau 5.0s. ID=1
-[2025-12-13 23:28:34] [INFO] [EVENT] Người lạ xuất hiện. ID=1
-[2025-12-13 23:28:35] [INFO] [EVENT] Người lạ ID 2 rời khỏi khu vực.
-[2025-12-13 23:28:36] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
-[2025-12-13 23:28:36] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
-[2025-12-13 23:28:38] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.61)
-[2025-12-13 23:28:47] [INFO] [EVENT] dung rời khỏi khu vực.
-[2025-12-13 23:28:49] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.42)
-[2025-12-13 23:28:51] [INFO] [EVENT] dung rời khỏi khu vực.
-[2025-12-13 23:28:51] [INFO] [EVENT] Người lạ xuất hiện. ID=32
-[2025-12-13 23:28:51] [INFO] [EVENT] Người lạ ID 32 rời khỏi khu vực.
-[2025-12-13 23:28:51] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
-[2025-12-13 23:28:52] [INFO] [EVENT] Người lạ xuất hiện. ID=32
-[2025-12-13 23:28:53] [INFO] [EVENT] Người lạ xuất hiện. ID=2
-[2025-12-13 23:28:58] [INFO] [EVENT] Người lạ ID 32 rời khỏi khu vực.
-[2025-12-13 23:28:58] [INFO] [EVENT] Người lạ xuất hiện. ID=32
-[2025-12-13 23:28:59] [INFO] [EVENT] Người lạ xuất hiện. ID=43
-[2025-12-13 23:28:59] [INFO] [EVENT] Người lạ ID 32 rời khỏi khu vực.
-[2025-12-13 23:29:00] [INFO] [EVENT] Người lạ ID 43 rời khỏi khu vực.
-[2025-12-13 23:29:00] [INFO] [EVENT] Người lạ xuất hiện. ID=32
-[2025-12-13 23:29:00] [INFO] [EVENT] Người lạ xuất hiện. ID=43
-[2025-12-13 23:29:00] [INFO] [EVENT] Người lạ ID 43 rời khỏi khu vực.
-[2025-12-13 23:29:01] [INFO] [EVENT] Người lạ xuất hiện. ID=43
-[2025-12-13 23:29:01] [INFO] [EVENT] Người lạ ID 32 rời khỏi khu vực.
-[2025-12-13 23:29:06] [INFO] [EVENT] Người lạ ID 43 rời khỏi khu vực.
-[2025-12-13 23:29:07] [INFO] [EVENT] Người lạ (ID=2) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
-[2025-12-13 23:29:10] [INFO] [EVENT] unknown rời khỏi khu vực.
-[2025-12-13 23:29:10] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.60)
-[2025-12-13 23:29:11] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.64)
-[2025-12-13 23:29:11] [INFO] [EVENT] dung rời khỏi khu vực.
-[2025-12-13 23:29:12] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.65)
-[2025-12-13 23:29:12] [INFO] [EVENT] Người lạ ID 2 rời khỏi khu vực.
-[2025-12-13 23:29:12] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
-[2025-12-13 23:29:18] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.66)
-[2025-12-13 23:29:18] [INFO] [EVENT] dung rời khỏi khu vực.
-[2025-12-13 23:29:18] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.69)
-[2025-12-13 23:29:18] [INFO] [EVENT] dung rời khỏi khu vực.
-[2025-12-13 23:29:18] [INFO] [EVENT] Người lạ xuất hiện. ID=43
-[2025-12-13 23:29:19] [INFO] [EVENT] Người lạ ID 43 rời khỏi khu vực.
-[2025-12-13 23:29:19] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
-[2025-12-13 23:29:20] [INFO] [EVENT] Người lạ xuất hiện. ID=43
-[2025-12-13 23:29:20] [INFO] [EVENT] dung rời khỏi khu vực.
-[2025-12-13 23:29:21] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.62)
-[2025-12-13 23:29:25] [INFO] [EVENT] dung rời khỏi khu vực.
-[2025-12-13 23:29:27] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.69)
-[2025-12-13 23:29:28] [INFO] [EVENT] dung rời khỏi khu vực.
-[2025-12-13 23:29:28] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.66)
-[2025-12-13 23:29:31] [INFO] [EVENT] dung rời khỏi khu vực.
-[2025-12-13 23:29:34] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.65)
-[2025-12-13 23:29:34] [INFO] [EVENT] dung rời khỏi khu vực.
-[2025-12-14 23:12:55] [INFO] [EVENT] Người lạ xuất hiện. ID=1
-[2025-12-14 23:12:56] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
-[2025-12-14 23:12:56] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
-[2025-12-14 23:12:56] [INFO] [EVENT] Người lạ xuất hiện. ID=8
-[2025-12-14 23:12:57] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
-[2025-12-14 23:13:07] [INFO] [EVENT] Người lạ ID 8 rời khỏi khu vực.
-[2025-12-14 23:13:07] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
-[2025-12-14 23:13:07] [INFO] [EVENT] Người lạ xuất hiện. ID=15
-[2025-12-14 23:13:08] [INFO] [EVENT] Người lạ ID 15 rời khỏi khu vực.
-[2025-12-14 23:13:08] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
-[2025-12-14 23:14:41] [INFO] [EVENT] Người lạ xuất hiện. ID=8
-[2025-12-14 23:14:41] [INFO] [EVENT] Người lạ xuất hiện. ID=1
-[2025-12-14 23:14:42] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
-[2025-12-14 23:14:43] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
-[2025-12-14 23:17:24] [INFO] [EVENT] Người lạ xuất hiện. ID=8
-[2025-12-14 23:17:24] [INFO] [EVENT] Người lạ xuất hiện. ID=1
-[2025-12-14 23:17:25] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
-[2025-12-14 23:17:26] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
-[2025-12-14 23:18:01] [INFO] [EVENT] Người lạ xuất hiện. ID=8
-[2025-12-14 23:18:01] [INFO] [EVENT] Người lạ xuất hiện. ID=1
-[2025-12-14 23:18:02] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
-[2025-12-14 23:18:03] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
-[2025-12-14 23:20:44] [INFO] [EVENT] Người lạ xuất hiện. ID=8
-[2025-12-14 23:20:44] [INFO] [EVENT] Người lạ xuất hiện. ID=1
-[2025-12-14 23:20:44] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
-[2025-12-14 23:20:46] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
-[2025-12-14 23:21:53] [INFO] [EVENT] Người lạ xuất hiện. ID=8
-[2025-12-14 23:21:53] [INFO] [EVENT] Người lạ xuất hiện. ID=1
-[2025-12-14 23:21:54] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
-[2025-12-14 23:21:55] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
-[2025-12-14 23:23:53] [INFO] [TIMEOUT] Không nhận diện được sau 5.0s. ID=8
-[2025-12-14 23:23:53] [INFO] [EVENT] Người lạ xuất hiện. ID=8
-[2025-12-14 23:23:53] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
-[2025-12-14 23:23:54] [INFO] [EVENT] Người lạ xuất hiện. ID=1
-[2025-12-14 23:23:55] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
-[2025-12-14 23:25:24] [INFO] [EVENT] Người lạ xuất hiện. ID=8
-[2025-12-14 23:25:25] [INFO] [EVENT] Người lạ xuất hiện. ID=1
-[2025-12-14 23:25:25] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
-[2025-12-14 23:25:26] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
-[2025-12-14 23:25:36] [INFO] [EVENT] Người lạ ID 8 rời khỏi khu vực.
-[2025-12-14 23:25:36] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
-[2025-12-14 23:25:37] [INFO] [EVENT] Người lạ xuất hiện. ID=15
-[2025-12-14 23:25:38] [INFO] [EVENT] Người lạ ID 15 rời khỏi khu vực.
-[2025-12-14 23:25:38] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
-[2025-12-14 23:27:28] [INFO] [TIMEOUT] Không nhận diện được sau 5.0s. ID=8
-[2025-12-14 23:27:28] [INFO] [EVENT] Người lạ xuất hiện. ID=8
-[2025-12-14 23:27:29] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
-[2025-12-14 23:27:29] [INFO] [EVENT] Người lạ xuất hiện. ID=1
-[2025-12-14 23:27:30] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
-[2025-12-14 23:29:13] [INFO] [EVENT] Người lạ xuất hiện. ID=8
-[2025-12-14 23:29:13] [INFO] [EVENT] Người lạ xuất hiện. ID=1
-[2025-12-14 23:29:13] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
-[2025-12-14 23:29:15] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
-[2025-12-14 23:31:42] [INFO] [EVENT] Người lạ xuất hiện. ID=8
-[2025-12-14 23:31:43] [INFO] [EVENT] Người lạ xuất hiện. ID=1
-[2025-12-14 23:31:43] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
-[2025-12-14 23:31:44] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
-[2025-12-14 23:35:10] [INFO] [EVENT] Người lạ xuất hiện. ID=8
-[2025-12-14 23:35:10] [INFO] [EVENT] Người lạ xuất hiện. ID=1
-[2025-12-14 23:35:11] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
-[2025-12-14 23:35:12] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
-[2025-12-14 23:40:16] [INFO] [EVENT] Người lạ xuất hiện. ID=8
-[2025-12-14 23:40:16] [INFO] [EVENT] Người lạ xuất hiện. ID=1
-[2025-12-14 23:40:17] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
-[2025-12-14 23:40:18] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
-[2025-12-14 23:45:03] [INFO] [EVENT] Người lạ xuất hiện. ID=8
-[2025-12-14 23:45:03] [INFO] [EVENT] Người lạ xuất hiện. ID=1
-[2025-12-14 23:45:04] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
-[2025-12-14 23:45:05] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
-[2025-12-14 23:49:13] [INFO] [EVENT] Người lạ xuất hiện. ID=8
-[2025-12-14 23:49:13] [INFO] [EVENT] Người lạ xuất hiện. ID=1
-[2025-12-14 23:49:14] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
-[2025-12-14 23:49:15] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
-[2025-12-14 23:50:37] [INFO] [EVENT] Người lạ xuất hiện. ID=1
-[2025-12-14 23:50:39] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
-[2025-12-14 23:50:39] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
-[2025-12-14 23:50:40] [INFO] [EVENT] Người lạ xuất hiện. ID=12
-[2025-12-14 23:50:41] [INFO] [EVENT] Người lạ ID 12 rời khỏi khu vực.
-[2025-12-14 23:50:41] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
-[2025-12-14 23:50:41] [INFO] [EVENT] Người lạ xuất hiện. ID=4
-[2025-12-14 23:50:43] [INFO] [EVENT] Người lạ (ID=4) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
-[2025-12-14 23:50:53] [INFO] [EVENT] Người lạ xuất hiện. ID=23
+{"id": "4111cd4a-d439-48ca-b1b6-67946300e05b", "title": "INFO", "description": "[TIMEOUT] Không nhận diện được sau 5.0s. ID=1", "time": "2025-12-15 15:47:28"}
+{"id": "3a309da4-4f1a-46d2-8ce0-0274e3060432", "title": "INFO", "description": "[EVENT] Người lạ xuất hiện. ID=1", "time": "2025-12-15 15:47:28"}
+{"id": "870e5f1f-4ca3-4e15-9c68-49165a7e30b1", "title": "WARNING", "description": "[EVENT] Người lạ (ID=1) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.", "time": "2025-12-15 15:47:28"}
+{"id": "6c30ce47-ba45-442c-a61d-385091024e38", "title": "WARNING", "description": "[EVENT] Người lạ (ID=1) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.", "time": "2025-12-15 15:47:38"}
+{"id": "a6647234-465f-4a2e-84cc-dfac14669b1d", "title": "WARNING", "description": "[EVENT] Người lạ (ID=1) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.", "time": "2025-12-15 15:47:48"}
+{"id": "51e7a8b5-916d-4e6a-9091-d99cda1094ba", "title": "WARNING", "description": "[EVENT] Người lạ (ID=1) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.", "time": "2025-12-15 15:47:57"}
+{"id": "574c774d-dda5-4061-a8ea-e16516d3dd1b", "title": "WARNING", "description": "[EVENT] Người lạ (ID=1) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.", "time": "2025-12-15 15:48:07"}
+{"id": "f27d8590-e6f9-4c30-b7c3-79ebf1147116", "title": "INFO", "description": "[EVENT] Người lạ ID 1 rời khỏi khu vực.", "time": "2025-12-15 15:48:14"}
+{"id": "3fb847bf-a47b-485c-9a02-97dff191b294", "title": "INFO", "description": "[EVENT] Không còn người lạ nào trong khu vực.", "time": "2025-12-15 15:48:14"}
+{"id": "43347c5c-f5ae-45bb-bd56-c54a99199ef3", "title": "INFO", "description": "[EVENT] Người lạ xuất hiện. ID=None", "time": "2025-12-15 15:48:15"}
+{"id": "6c608683-7f0c-44a1-b3bc-80b1d461f263", "title": "INFO", "description": "[EVENT] Người lạ ID None rời khỏi khu vực.", "time": "2025-12-15 15:48:15"}
+{"id": "298533a7-579c-486d-ae3e-b2af6dd79c09", "title": "INFO", "description": "[EVENT] Không còn người lạ nào trong khu vực.", "time": "2025-12-15 15:48:15"}
+{"id": "262ec48a-a7d0-452f-bb8a-9f7635af43da", "title": "INFO", "description": "[EVENT] Người lạ xuất hiện. ID=7", "time": "2025-12-15 15:48:15"}
+{"id": "258b7e75-2c04-4429-ad88-98ba3622bb52", "title": "INFO", "description": "[EVENT] Người lạ ID 7 rời khỏi khu vực.", "time": "2025-12-15 15:48:17"}
+{"id": "1aee5387-d03e-4054-9283-76217d578979", "title": "INFO", "description": "[EVENT] Không còn người lạ nào trong khu vực.", "time": "2025-12-15 15:48:17"}
+{"id": "6942b395-a089-4811-b99d-ad67ede6dece", "title": "INFO", "description": "[EVENT] dung xuất hiện. ID=1003, score=0.39)", "time": "2025-12-15 15:48:17"}
+{"id": "8cfd7353-d18d-448b-86dc-cc45705437e3", "title": "INFO", "description": "[EVENT] dung xuất hiện. ID=1003, score=0.46)", "time": "2025-12-15 15:50:40"}
+{"id": "813a993d-00fa-48ab-8ae3-60e6424c316a", "title": "INFO", "description": "[EVENT] dung rời khỏi khu vực.", "time": "2025-12-15 15:50:40"}
+{"id": "f97cc5cc-eb07-402d-8b33-1716735ad919", "title": "INFO", "description": "[EVENT] dung rời khỏi khu vực.", "time": "2025-12-15 15:50:58"}
+{"id": "776a98a1-29c4-4a3f-bb92-ee54de10b3ff", "title": "INFO", "description": "[EVENT] dung xuất hiện. ID=1003, score=0.42)", "time": "2025-12-15 15:51:02"}
+{"id": "47bb317f-caa9-480d-8b6c-5557fabcf0b9", "title": "INFO", "description": "[EVENT] dung rời khỏi khu vực.", "time": "2025-12-15 15:51:06"}
+{"id": "423b15ce-3767-4c7d-9dca-599d3adda766", "title": "INFO", "description": "[EVENT] Người lạ xuất hiện. ID=66", "time": "2025-12-15 15:51:08"}
+{"id": "2e8bc547-d271-4ff5-9845-283846fb9c8e", "title": "INFO", "description": "[EVENT] unknown rời khỏi khu vực.", "time": "2025-12-15 15:51:09"}
+{"id": "deaff413-d3b1-4ab4-aa8f-c1a7fb3a0aad", "title": "INFO", "description": "[EVENT] unknown rời khỏi khu vực.", "time": "2025-12-15 15:51:11"}
+{"id": "2d385136-db83-46f1-86a4-49ea1f27730c", "title": "INFO", "description": "[EVENT] Người lạ xuất hiện. ID=77", "time": "2025-12-15 15:51:13"}
+{"id": "46bc3903-915f-442f-b982-3f391a32fefa", "title": "INFO", "description": "[EVENT] Người lạ ID 77 rời khỏi khu vực.", "time": "2025-12-15 15:51:13"}
+{"id": "09e9f595-9fac-45e8-bd9f-4f66fe454c37", "title": "INFO", "description": "[EVENT] Người lạ xuất hiện. ID=77", "time": "2025-12-15 15:51:13"}
+{"id": "223a9d4d-2bee-4c32-849a-459e0107b6f2", "title": "INFO", "description": "[EVENT] Người lạ ID 77 rời khỏi khu vực.", "time": "2025-12-15 15:51:14"}
+{"id": "7768d7cf-02d6-4efa-bf0b-8250b110da5e", "title": "INFO", "description": "[EVENT] Người lạ xuất hiện. ID=77", "time": "2025-12-15 15:51:14"}
+{"id": "4c7c6902-46d9-46db-bc92-b0697db28505", "title": "INFO", "description": "[EVENT] Người lạ ID 77 rời khỏi khu vực.", "time": "2025-12-15 15:51:16"}
+{"id": "71e6da9c-3a16-46de-9aba-dce376dfaacd", "title": "WARNING", "description": "[EVENT] Người lạ (ID=66) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.", "time": "2025-12-15 15:51:17"}
+{"id": "c59c1716-cf76-4387-aba2-ce786ff64dd3", "title": "WARNING", "description": "[EVENT] Người lạ (ID=66) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.", "time": "2025-12-15 15:51:26"}
+{"id": "05410d7a-b3e4-480c-ade5-c430b2aae71f", "title": "WARNING", "description": "[EVENT] Người lạ (ID=66) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.", "time": "2025-12-15 15:51:36"}
+{"id": "22fe176e-c485-437a-854d-b546d786d021", "title": "INFO", "description": "[EVENT] Người lạ ID 66 rời khỏi khu vực.", "time": "2025-12-15 15:51:37"}
+{"id": "323fbd5a-3705-41e6-92d3-c58fadd74792", "title": "INFO", "description": "[EVENT] Không còn người lạ nào trong khu vực.", "time": "2025-12-15 15:51:37"}
+{"id": "139fa2ea-8362-4733-93d0-4c48ee898baa", "title": "INFO", "description": "[EVENT] dung xuất hiện. ID=1003, score=0.58)", "time": "2025-12-15 15:51:38"}
+{"id": "b8650218-b0c9-4039-9186-e378407eeb88", "title": "INFO", "description": "[EVENT] dung rời khỏi khu vực.", "time": "2025-12-15 15:53:25"}
+{"id": "3a441348-388a-4d14-af33-df62b7b20b80", "title": "INFO", "description": "[EVENT] Người lạ xuất hiện. ID=None", "time": "2025-12-15 15:53:26"}
+{"id": "143ba9b7-2f99-40e5-bf29-8a599979e00d", "title": "INFO", "description": "[EVENT] Người lạ ID None rời khỏi khu vực.", "time": "2025-12-15 15:53:26"}
+{"id": "c72c7bb4-0caf-4f13-a75c-090363b716cf", "title": "INFO", "description": "[EVENT] Không còn người lạ nào trong khu vực.", "time": "2025-12-15 15:53:26"}
+{"id": "2f8b7011-c2da-448e-ba26-dc29458923c8", "title": "INFO", "description": "[EVENT] Người lạ xuất hiện. ID=137", "time": "2025-12-15 15:53:26"}
+{"id": "f884358a-39ad-40e7-9bc1-bbd6a4d489a2", "title": "INFO", "description": "[EVENT] Người lạ ID 137 rời khỏi khu vực.", "time": "2025-12-15 15:53:28"}
+{"id": "e6e210fe-270e-4211-88fb-8fa3b6d94e7f", "title": "INFO", "description": "[EVENT] Không còn người lạ nào trong khu vực.", "time": "2025-12-15 15:53:28"}
+{"id": "d8c095fd-5d48-4b94-92f2-b47add7a8dc4", "title": "INFO", "description": "[EVENT] Người lạ xuất hiện. ID=137", "time": "2025-12-15 15:53:28"}
+{"id": "68537015-2501-4e47-9868-ced89565eb02", "title": "INFO", "description": "[EVENT] Người lạ ID 137 rời khỏi khu vực.", "time": "2025-12-15 15:53:29"}
+{"id": "eb228eb3-1cb8-4d9d-8c48-934b032a80eb", "title": "INFO", "description": "[EVENT] Không còn người lạ nào trong khu vực.", "time": "2025-12-15 15:53:29"}
+{"id": "1bec4c76-4582-47e3-b13c-55e59e26e662", "title": "INFO", "description": "[EVENT] Người lạ xuất hiện. ID=137", "time": "2025-12-15 15:53:29"}
+{"id": "347b77b6-3fac-4b5a-986d-756cff54afbf", "title": "INFO", "description": "[EVENT] Người lạ ID 137 rời khỏi khu vực.", "time": "2025-12-15 15:53:29"}
+{"id": "9cdf8f6f-a84b-4ee8-aa6c-e723c2a8ec7f", "title": "INFO", "description": "[EVENT] Không còn người lạ nào trong khu vực.", "time": "2025-12-15 15:53:29"}
+{"id": "755e90c6-d013-4ead-87a0-403e059248e9", "title": "INFO", "description": "[EVENT] Người lạ xuất hiện. ID=149", "time": "2025-12-15 15:53:33"}
+{"id": "9110d766-d3e7-4e7d-902d-1658d2beacfb", "title": "INFO", "description": "[EVENT] dung xuất hiện. ID=1003, score=0.37)", "time": "2025-12-15 15:53:34"}
+{"id": "89747b95-63fb-4049-8821-35a9afe73358", "title": "INFO", "description": "[EVENT] dung rời khỏi khu vực.", "time": "2025-12-15 15:53:35"}
+{"id": "41316137-10e6-4049-abdc-c5125755956e", "title": "INFO", "description": "[EVENT] Người lạ ID 149 rời khỏi khu vực.", "time": "2025-12-15 15:53:36"}
+{"id": "d00ac3e3-4b31-4fd9-82f6-5d9eefba6410", "title": "INFO", "description": "[EVENT] Không còn người lạ nào trong khu vực.", "time": "2025-12-15 15:53:36"}
+{"id": "aeea7b37-8f2e-4616-84ac-a210f10892d1", "title": "INFO", "description": "[EVENT] Người lạ xuất hiện. ID=153", "time": "2025-12-15 15:53:36"}
+{"id": "ef2703b3-0ffe-4737-a306-e02c34d515ff", "title": "INFO", "description": "[EVENT] Người lạ ID 153 rời khỏi khu vực.", "time": "2025-12-15 15:53:39"}
+{"id": "b137b266-2307-439f-abce-027d1c9e6697", "title": "INFO", "description": "[EVENT] Không còn người lạ nào trong khu vực.", "time": "2025-12-15 15:53:39"}
+{"id": "7509e440-472b-4cb8-9cbe-a8570de2be8b", "title": "INFO", "description": "[EVENT] dung xuất hiện. ID=1003, score=0.63)", "time": "2025-12-15 15:53:39"}
+{"id": "e9790be5-e9ce-4051-88a5-1def3d97b19d", "title": "INFO", "description": "[EVENT] dung rời khỏi khu vực.", "time": "2025-12-15 15:53:39"}
+{"id": "a6592974-8f7e-4b36-b310-167400d77e82", "title": "INFO", "description": "[EVENT] dung xuất hiện. ID=1003, score=0.43)", "time": "2025-12-15 15:53:39"}
+{"id": "e6af025b-6739-4b71-8a8f-ebd6b14aec1a", "title": "INFO", "description": "[EVENT] unknown rời khỏi khu vực.", "time": "2025-12-15 15:53:44"}
+{"id": "94203c6f-38fe-4e05-a1dd-12e0901a9c55", "title": "INFO", "description": "[EVENT] Người lạ xuất hiện. ID=400", "time": "2025-12-15 15:59:15"}
+{"id": "93fe65de-d914-4afc-a089-1ad780ac99d8", "title": "INFO", "description": "[EVENT] dung rời khỏi khu vực.", "time": "2025-12-15 15:59:16"}
+{"id": "a81df4e0-4a32-496c-8ca8-a0f9117a3f7a", "title": "INFO", "description": "[EVENT] Người lạ xuất hiện. ID=153", "time": "2025-12-15 15:59:18"}
+{"id": "a17bcfd9-abf7-423b-9a72-6667f2037187", "title": "INFO", "description": "[EVENT] Người lạ ID 153 rời khỏi khu vực.", "time": "2025-12-15 15:59:18"}
+{"id": "eb42797d-d6fd-49fa-92e5-b06666adcfcf", "title": "INFO", "description": "[EVENT] Người lạ xuất hiện. ID=153", "time": "2025-12-15 15:59:19"}
+{"id": "9c08373e-b15a-48b9-92ae-db36711fbc36", "title": "INFO", "description": "[EVENT] Người lạ ID 153 rời khỏi khu vực.", "time": "2025-12-15 15:59:46"}
+{"id": "17b3217b-ccfc-4e78-bd16-5796113b3d95", "title": "WARNING", "description": "[EVENT] Người lạ (ID=400) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.", "time": "2025-12-15 15:59:51"}
+{"id": "2214f976-44b3-467b-852d-53ef3496c18b", "title": "INFO", "description": "[EVENT] Người lạ xuất hiện. ID=153", "time": "2025-12-15 15:59:51"}
+{"id": "314f7519-cd1f-4349-9589-c9f60d1ccc9f", "title": "INFO", "description": "[EVENT] Người lạ ID 153 rời khỏi khu vực.", "time": "2025-12-15 15:59:51"}
+{"id": "e84a5278-5fca-4911-a21c-9403ca6df3b6", "title": "INFO", "description": "[EVENT] Người lạ xuất hiện. ID=153", "time": "2025-12-15 15:59:53"}
+{"id": "81ac4593-a505-4f45-b832-279247b51386", "title": "INFO", "description": "[EVENT] Người lạ ID 153 rời khỏi khu vực.", "time": "2025-12-15 15:59:53"}

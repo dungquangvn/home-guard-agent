@@ -32,3 +32,4 @@ alert_frame_images/
 recordings/
 data/
 .env
+logs/

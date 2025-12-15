@@ -20,9 +20,13 @@ from src.event_handlers.on_new_person import on_new_person
 from src.event_handlers.on_new_vehicle import on_new_vehicle
 from src.event_handlers.on_object_left import on_object_left
 from src.event_handlers.on_stranger_stay_long import on_stranger_stay_long
+from src.modules.server.back_end.server import start_server
+from multiprocessing import Queue, Process
+import numpy as np
         
-async def main():
+def main(output_queue: Optional[Queue] = None):
     cam = Camera(source=0)
+    # print(f"Camera opened: {cam.width}x{cam.height} at {cam.fps} FPS")
     # cam = Camera(source="data/nguoi_la.mp4")
     video_recorder = VideoRecorder(
         fps=cam.fps,
@@ -77,14 +81,48 @@ async def main():
         for det in newest_detections:    
             frame_data.add_object(det)
             
-        video_recorder.write(frame_data.image)
+        # Truyền qua ở đây để server lấy frame mới nhất
+        # 2. Xóa frame cũ khỏi Queue nếu có (Chỉ giữ frame MỚI NHẤT)
+        # Đây là bước quan trọng để tránh bộ nhớ bị đầy và giảm độ trễ
+        if not output_queue.empty():
+            try:
+                # Xóa tất cả frame cũ. 
+                # Nếu tốc độ xử lý chậm hơn tốc độ frame, 
+                # việc này đảm bảo server luôn lấy frame mới nhất.
+                while not output_queue.empty():
+                    output_queue.get_nowait()
+            except:
+                pass # Bỏ qua lỗi nếu Queue rỗng bất ngờ
+                
+        # 3. Put frame mới nhất vào Queue
+        output_queue.put(frame_data.image)
+
+        # video_recorder.write(frame_data.image)
             
-        cv2.imshow("AI-CAM", frame_data.image)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+        # cv2.imshow("AI-CAM", frame_data.image)
+        # if cv2.waitKey(1) & 0xFF == ord('q'):
+        #     break
         
     video_recorder.release()
     cam.release()
-    
+
 if __name__ == '__main__':
-    asyncio.run(main())
+    # 1. Khởi tạo Queue
+    frame_queue = Queue(maxsize=1) # maxsize=1 để chỉ giữ 1 frame mới nhất
+
+    # 2. Chạy Flask Server trong một Tiến trình (Process) riêng
+    # Tiến trình này sẽ chạy song song với tiến trình main
+    flask_process = Process(target=start_server, args=(frame_queue,))
+    flask_process.start()
+    
+    # 3. Chạy main logic, truyền Queue để nó có thể put frame vào
+    try:
+        main(frame_queue)
+    except KeyboardInterrupt:
+        print("Stopping main process...")
+    finally:
+        # 4. Đảm bảo đóng server và tiến trình khi main kết thúc
+        print("Stopping Flask server process...")
+        flask_process.terminate()
+        flask_process.join()
+        print("Application stopped.")
