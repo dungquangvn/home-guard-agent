@@ -7,7 +7,7 @@ import uuid
 class Logger:
     # ... (giữ nguyên __init__ và các thuộc tính khác)
 
-    def __init__(self, log_file="logs/system.log", auto_flush=True):
+    def __init__(self, log_file="system.log", auto_flush=True):
         self.log_file = log_file
         self.auto_flush = auto_flush
         self.lock = threading.Lock()
@@ -20,10 +20,10 @@ class Logger:
             "debug": {"title": "DEBUG", "description": "Debugging Message"}
         }
 
-        os.makedirs(os.path.dirname(self.log_file), exist_ok=True)
+        # os.makedirs(self.log_file, exist_ok=True)
         
     # Sửa đổi hàm _write để tạo LogsData và ghi JSON
-    def _write(self, level, message, custom_title=None, custom_desc=None):
+    def _write(self, level, message, custom_title=None, custom_desc=None, file_path=None):
         now = datetime.now()
         timestamp = now.strftime("%Y-%m-%d %H:%M:%S")
         
@@ -35,7 +35,8 @@ class Logger:
             "id": str(uuid.uuid4()), # Tạo ID duy nhất
             "title": custom_title if custom_title else metadata["title"],
             "description": custom_desc if custom_desc else message, # Dùng message làm description
-            "time": timestamp
+            "time": timestamp,
+            "file_path": file_path if file_path else ""
         }
 
         # 2. Chuyển LogsData thành chuỗi JSON và thêm ký tự xuống dòng
@@ -49,14 +50,14 @@ class Logger:
                     f.flush()
 
     # Cập nhật các hàm gọi log
-    def info(self, message, title="INFO"):
-        self._write("info", message, custom_title=title)
+    def info(self, message, title="INFO", file_path=None):
+        self._write("info", message, custom_title=title, file_path=file_path)
 
-    def warning(self, message, title="WARNING"):
-        self._write("warning", message, custom_title=title)
+    def warning(self, message, title="WARNING", file_path=None):
+        self._write("warning", message, custom_title=title, file_path=file_path)
 
-    def error(self, message, title="ERROR"):
-        self._write("error", message, custom_title=title)
+    def error(self, message, title="ERROR", file_path=None):
+        self._write("error", message, custom_title=title, file_path=file_path)
         
-    def debug(self, message, title="DEBUG"):
-        self._write("debug", message, custom_title=title)
+    def debug(self, message, title="DEBUG", file_path=None):
+        self._write("debug", message, custom_title=title, file_path=file_path)

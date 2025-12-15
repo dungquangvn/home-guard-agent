@@ -3,6 +3,7 @@ from src.modules.alerts.alert_service import AlertService
 from src.core.state_manager import StateManager
 from src.modules.logging.logger import Logger
 from concurrent.futures import ThreadPoolExecutor, TimeoutError
+import os, cv2, datetime
 
 RECOGNITION_TIMEOUT = 5.0
 
@@ -52,7 +53,8 @@ def on_new_person(face_recognitor: FaceRecognitor, alert_service: AlertService, 
             score = 0.0
 
             logger.info(
-                f"[TIMEOUT] Không nhận diện được sau {RECOGNITION_TIMEOUT}s. ID={detection.tracker_id}"
+                title="[RECOGNITION] Nhận diện khuôn mặt bị timeout",
+                message=f"Quá thời gian chờ {RECOGNITION_TIMEOUT}s cho Track, đánh dấu là người lạ. (Track ID={detection.tracker_id})"
             )
         
         detection.identity_id = identity_id
@@ -64,15 +66,24 @@ def on_new_person(face_recognitor: FaceRecognitor, alert_service: AlertService, 
         detection.is_recognized = True
         detection.is_processing = False
 
+        frame_image_path = f'src/modules/server/front_end/react/public/frame_{datetime.datetime.now().strftime("%Y%m%d_%H%M%S")}.jpg'
+        frame_image_name = os.path.basename(frame_image_path)
+        os.makedirs('src/modules/server/front_end/react/public/', exist_ok=True)
+        cv2.imwrite(frame_image_path, person_image)
+        
         # Xử lý dựa vào kết quả nhận diện
         if not detection.is_strange:
             alert_service.stop_alarm_sound()
             logger.info(
-                f"[EVENT] {detection.name} xuất hiện. ID={identity_id}, score={score:.2f})"
+                title="[EVENT] Người quen xuất hiện",
+                message=f"{detection.name} (ID={detection.identity_id})",
+                file_path=frame_image_name
             )
         else:
             logger.info(
-                f"[EVENT] Người lạ xuất hiện. ID={detection.tracker_id}"
+                title="[EVENT] Người lạ xuất hiện",
+                message=f"Người lạ (ID={detection.tracker_id})",
+                file_path=frame_image_name
             )
             
         state_manager.update(detection)

@@ -33,3 +33,4 @@ recordings/
 data/
 .env
 logs/
+src/modules/server/front_end/react/public/

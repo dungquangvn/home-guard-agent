@@ -16,6 +16,7 @@ from multiprocessing import Queue, Process
 
 # Biến toàn cục để lưu trữ Queue (sẽ được truyền vào khi chạy Process)
 frame_queue = None
+shared_brightness_value = None
 
 #set up
 load_dotenv()
@@ -122,6 +123,21 @@ def poll():
     
     return jsonify({"has_message": False, "message": None})
 
+@app.route('/brightness', methods=['GET'])
+def get_brightness():
+    """API trả về độ sáng trung bình mới nhất."""
+    
+    if shared_brightness_value is None:
+        return jsonify({"error": "Brightness value not initialized"}), 500
+        
+    # Đọc giá trị từ Shared Value
+    avg_brightness = shared_brightness_value.get() 
+    
+    return jsonify({
+        "avg_brightness": round(avg_brightness, 2), # Làm tròn để dễ đọc và truyền tải
+        "timestamp": time.time() # Optional: Thêm timestamp để client kiểm tra độ mới
+    })
+
 
 # Utilitizes functions
 
@@ -151,11 +167,14 @@ def detect_stranger():
         else:
             time.sleep(0.1)
 
-def start_server(queue: Queue, host='127.0.0.1', port=5000):
+def start_server(queue: Queue, brightness_value, host='127.0.0.1', port=5000):
     """Hàm chạy Flask server trong một tiến trình riêng."""
     global frame_queue
+    global shared_brightness_value # Cập nhật biến global
+    
     frame_queue = queue
-    # Đặt use_reloader=False để tránh server chạy hai lần
+    shared_brightness_value = brightness_value # Lưu trữ Shared Value
+    
     app.run(host=host, port=port, debug=False, use_reloader=False)
 
 if __name__ == "__main__":

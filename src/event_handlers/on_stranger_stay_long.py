@@ -1,31 +1,44 @@
 from src.core.state_manager import StateManager
 from src.modules.logging.logger import Logger
 from src.modules.alerts.alert_service import AlertService
+from src.modules.video_recorder.video_recorder import EventVideoRecorder    
 from src.utils.classes import Detection
 from sendgrid.helpers.mail import *
 import datetime, base64, os
 import cv2
 
-def on_stranger_stay_long(alert_service: AlertService, logger: Logger):
+def on_stranger_stay_long(alert_service: AlertService, event_recorder: EventVideoRecorder, logger: Logger):
 
     def handler(event):
         det: Detection = event["data"]
-        frame_image = event["frame"].get_image()
-        frame_image_path = f'alert_frame_images/frame_{datetime.datetime.now().strftime("%Y%m%d_%H%M%S")}.jpg'
-        os.makedirs('alert_frame_images', exist_ok=True)
-        cv2.imwrite(frame_image_path, frame_image)
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
 
-        logger.warning(f"[EVENT] Người lạ (ID={det.tracker_id}) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.")
+        video_name = f"event_{det.tracker_id}_{timestamp}.mp4"
+        save_dir = "src/modules/server/front_end/react/public"
+
+        event_recorder.save_event(save_dir, video_name)
+        
+        # frame_image = event["frame"].get_image()
+        # frame_image_path = f'src/modules/server/front_end/react/public/frame_{datetime.datetime.now().strftime("%Y%m%d_%H%M%S")}.jpg'
+        # frame_image_name = os.path.basename(frame_image_path)
+        # os.makedirs('src/modules/server/front_end/react/public/', exist_ok=True)
+        # cv2.imwrite(frame_image_path, frame_image)
+
+        logger.warning(
+            title="[EVENT] Người lạ đứng lâu trong khu vực",
+            message=f"Người lạ (ID={det.tracker_id}) xuất hiện lâu trong khu vực mà không có người quen đi cùng.",
+            file_path=video_name
+        )
         # alert_service.start_alarm_sound(loop=True)
         
-        subject = "[HOME GUARD] ⚠️ CẢNH BÁO: Người lạ đứng lâu trước nhà "
-        f"(Track ID #{det.tracker_id}"
-        html = build_email_html(det, image_cid="alert_frame")
-        content = Content("text/html", html)
+        # subject = "[HOME GUARD] ⚠️ CẢNH BÁO: Người lạ đứng lâu trước nhà "
+        # f"(Track ID #{det.tracker_id}"
+        # html = build_email_html(det, image_cid="alert_frame")
+        # content = Content("text/html", html)
         # alert_service.send_email(subject, content, frame_image_path)
 
     return handler
-
+    
 def build_email_html(det: Detection, image_cid="alert_frame") -> str:
     now = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 

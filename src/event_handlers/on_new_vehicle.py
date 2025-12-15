@@ -2,6 +2,7 @@ from src.modules.recognition.plate_recognitor import CustomLicensePlateRecognize
 from src.core.state_manager import StateManager
 from src.modules.logging.logger import Logger
 import pprint
+import os, cv2, datetime
 
 ID_PLATE_NUMBER_MAP = {
     '201': '19s2-45678',
@@ -50,9 +51,18 @@ def on_new_vehicle(plate_recognitor: CustomLicensePlateRecognizer, logger: Logge
         # --- Nhận diện biển số ---
         plates = plate_recognitor.detect_license_plates(vehicle_crop)
 
+        frame_image_path = f'src/modules/server/front_end/react/public/frame_{datetime.datetime.now().strftime("%Y%m%d_%H%M%S")}.jpg'
+        frame_image_name = os.path.basename(frame_image_path)
+        os.makedirs('src/modules/server/front_end/react/public/', exist_ok=True)
+        cv2.imwrite(frame_image_path, vehicle_crop)
+
         if len(plates) == 0:
             # Không đọc được hoặc không tìm thấy biển số
-            logger.info(f"[EVENT] Không đọc được biển số.")
+            logger.info(
+                title="[EVENT] Xe lạ – không nhận diện được biển số",
+                message=f"Không tìm thấy biển số trên xe (Track ID={detection.tracker_id})",
+                file_path=frame_image_name
+            )
             
             detection.identity_id = None
             detection.plate_number = "Unknown"
@@ -80,11 +90,13 @@ def on_new_vehicle(plate_recognitor: CustomLicensePlateRecognizer, logger: Logge
         # --- Logging theo kết quả ---
         if detection.is_strange:
             logger.info(
-                f"[EVENT] Xe lạ – không nhận diện được biển số (score={score:.2f})."
+                title="[EVENT] Xe lạ xuất hiện",
+                message=f"Xe lạ với biển số {plate_number} (Track ID={detection.tracker_id})"
             )
         else:
             logger.info(
-                f"[EVENT] Xe quen: {plate_number} (ID={identity_id}, score={score:.2f})."
+                title="[EVENT] Xe quen xuất hiện",
+                message=f"Xe với biển số {plate_number} (ID={identity_id})"
             )
 
         # --- Cập nhật state ---

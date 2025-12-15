@@ -3,7 +3,7 @@ from ..modules.DataType import LogsData
 import os
 import json
 
-LOG_FILE_PATH = "logs/system.log"
+LOG_FILE_PATH = "system.log"
 static_path = os.getenv("BACK_END_STATIC_FOLDER_URL")
 
 

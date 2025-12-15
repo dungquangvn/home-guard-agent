@@ -8,7 +8,7 @@ export default function LogsList({ logs }) {
 
   const totalPages = Math.ceil(logs.length / ITEMS_PER_PAGE);
 
-  // Cắt log theo từng trang
+  // Cắt log theo từng trang (Logic giữ nguyên)
   const slicedLogs = logs.slice(
     (page - 1) * ITEMS_PER_PAGE,
     page * ITEMS_PER_PAGE
@@ -32,25 +32,33 @@ export default function LogsList({ logs }) {
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center items-center gap-4 mt-5">
+      <div className="flex justify-center items-center gap-4 mt-8">
+        
+        {/* Nút Prev */}
         <button
           onClick={handlePrev}
           disabled={page === 1}
-          className="px-4 py-2 rounded bg-gray-200 disabled:opacity-40"
+          // Style Dark Mode: nền xám, chữ trắng, hiệu ứng hover
+          className="px-4 py-2 rounded-lg bg-gray-600 text-white 
+                     hover:bg-gray-500 transition disabled:opacity-30 disabled:cursor-not-allowed"
         >
-          Prev
+          &larr; Previous
         </button>
 
-        <span className="text-gray-800 font-medium">
-          Page {page} / {totalPages}
+        {/* Trang hiện tại */}
+        <span className="text-gray-400 font-medium">
+          Trang <span className="text-teal-400 font-bold">{page}</span> / {totalPages}
         </span>
 
+        {/* Nút Next */}
         <button
           onClick={handleNext}
           disabled={page === totalPages}
-          className="px-4 py-2 rounded bg-gray-200 disabled:opacity-40"
+          // Style Dark Mode: nền xám, chữ trắng, hiệu ứng hover
+          className="px-4 py-2 rounded-lg bg-gray-600 text-white 
+                     hover:bg-gray-500 transition disabled:opacity-30 disabled:cursor-not-allowed"
         >
-          Next
+          Next &rarr;
         </button>
       </div>
     </div>
