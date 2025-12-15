@@ -1,21 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { io } from "socket.io-client";
 import useLongPolling from "./useLongPolling";
 import AudioAlert from "./AudioAlert";
+import { DetectStranger } from "../../context/DetectStrangerContext";
 
 export default function Alert() {
   const [toasts, setToasts] = useState([]);
-  const [triggerAlert, setTriggerAlert] = useState(false)
+  const {isDetectingStranger, setIsDetectingStranger} = useContext(DetectStranger)
 
   useLongPolling((message) => {
     setToasts(prev => [...prev, message]);
-  }, setTriggerAlert);
+  }, setIsDetectingStranger);
   
 
 
   return (
     <>
-    <AudioAlert trigger={triggerAlert} />
+    <AudioAlert trigger={isDetectingStranger}></AudioAlert>
     <div style={{ position: "fixed", top: 20, right: 20, zIndex: 1000 }}>
       {toasts.map((toast) => (
         <div key={toast.id} style={{
@@ -33,7 +34,7 @@ export default function Alert() {
           <span>{toast.ms}</span>
           <button onClick={() => {
             setToasts((prev) => prev.filter((t) => t.id !== toast.id));
-            setTriggerAlert(false);
+            setIsDetectingStranger(false);
           }}
                   style={{
                     marginLeft: 10,

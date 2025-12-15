@@ -4,6 +4,7 @@ import os
 import json
 
 LOG_FILE_PATH = "logs/system.log"
+static_path = os.getenv("BACK_END_STATIC_FOLDER_URL")
 
 
 class SendLogsModules:
@@ -22,7 +23,6 @@ class SendLogsModules:
             self.__isInitialized = True
             
     def _read_logs_from_file(self):
-        """Hàm đọc tất cả log từ file JSON Line-by-Line."""
         new_logs = []
         if not os.path.exists(LOG_FILE_PATH):
             return new_logs
@@ -65,7 +65,7 @@ class SendLogsModules:
 
         # 2. Chuyển đổi danh sách đối tượng LogsData thành định dạng có thể jsonify
         # Dùng list comprehension để chuyển về dict trước khi jsonify
-        logs_for_json = [log.__dict__ for log in self.__logs] 
+        logs_for_json = [log.__dict__ for log in  reversed(self.__logs)] 
         
         return jsonify(logs_for_json)
 

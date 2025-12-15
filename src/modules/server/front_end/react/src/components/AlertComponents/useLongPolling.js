@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 
-export default function useLongPolling(onMessage, onTriggerAlert) {
+export default function useLongPolling(onMessage, onDetectStranger) {
+  
   useEffect(() => {
     let isActive = true;
 
@@ -19,7 +20,7 @@ export default function useLongPolling(onMessage, onTriggerAlert) {
           if (data.has_message) {
             console.log("received ms from server: " + data.message)
             onMessage(data.message);
-            onTriggerAlert(true);
+            onDetectStranger(true);
           } else{
             console.log("server doesnt send anything !!")
           }
