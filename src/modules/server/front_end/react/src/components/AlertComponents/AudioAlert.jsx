@@ -12,15 +12,22 @@ export default function AudioAlert({ trigger }) {
   }, []);
 
   useEffect(() => {
+
+    const audio = audioRef.current;
+    console.log("detect stranger: " + trigger)
+    if (!audio) {
+      console.log("audio ref is null");
+      return;
+    }
+
     if (trigger) {
-    
-      const audio = audioRef.current;
-      if (!audio) return;
+      console.log("active alert sounds !!");
       audio.volume = 1.0;    
       audio.currentTime = 0; 
       audio.play().catch((e) => console.log("Play error:", e));
     } else{
-      audioRef.current.volume = 0; 
+      console.log("inactive alert sounds !!");
+      audio.volume = 0; 
     }
   }, [trigger]);
 

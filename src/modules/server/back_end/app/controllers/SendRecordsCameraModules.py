@@ -34,7 +34,7 @@ class SendRecordsCameraModules:
 
     def __get_all_videos_name(self):
         videos = []
-        video_paths = glob.glob(f"./src/modules/server/back_end/static/video/*.mp4")
+        video_paths = glob.glob(f"./src/modules/server/back_end/static/video_record/*.mp4")
         id = 0
 
         for path in video_paths:

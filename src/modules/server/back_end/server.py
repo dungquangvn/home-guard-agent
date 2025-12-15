@@ -91,7 +91,7 @@ def sendLogs():
 
 @app.route('/video_records')
 def sendVideoRecords():
-    recorded_videos_folder_path = static_path + "/video"
+    recorded_videos_folder_path = static_path + "/video_record"
     video_record_module = SendRecordsCameraModules(recorded_videos_folder_path)
     return video_record_module.getVideoRecords()
 
@@ -141,7 +141,7 @@ def detect_stranger():
 
     while True:
         if not long_polling.isNotHavingClients():
-            time.sleep(10)
+            time.sleep(30)
             print("check current client id: ", current_client_id)
             if current_client_id is not None:
                 #sau đó dựa vào id của client + truyền thông báo dưới dạng AlertData để thông báo cho clients
@@ -158,6 +158,6 @@ def start_server(queue: Queue, host='127.0.0.1', port=5000):
     # Đặt use_reloader=False để tránh server chạy hai lần
     app.run(host=host, port=port, debug=False, use_reloader=False)
 
-# if __name__ == "__main__":
-    # threading.Thread(target=main, daemon=True).start()
-    # app.run(host="127.0.0.1", port=5000)
+if __name__ == "__main__":
+    threading.Thread(target=detect_stranger, daemon=True).start()
+    app.run(host="127.0.0.1", port=5000)

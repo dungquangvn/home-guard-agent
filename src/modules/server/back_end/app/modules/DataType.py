@@ -6,6 +6,7 @@ class LogsData:
     title: str
     description: str
     time: str
+    file_path: str
     
 @dataclass
 class RecordedVideoData:

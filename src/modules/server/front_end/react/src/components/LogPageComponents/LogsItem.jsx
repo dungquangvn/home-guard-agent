@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function LogsItem({ log }) {
-  return (
+  const LogItemComponent = (
     <div className="flex items-start gap-4 p-4 bg-white shadow rounded-xl border border-gray-100 hover:shadow-md transition-all">
       {/* Icon */}
       <div className="w-3 h-3 mt-2 rounded-full bg-red-500"></div>
@@ -17,5 +17,17 @@ export default function LogsItem({ log }) {
         {log.time}
       </span>
     </div>
+  );
+
+  return (
+    <>
+      {log.file_path ? (
+        <a href={log.file_path} target="_blank" rel="noopener noreferrer">
+          {LogItemComponent}
+        </a>
+      ) : (
+        LogItemComponent
+      )}
+    </>
   );
 }
