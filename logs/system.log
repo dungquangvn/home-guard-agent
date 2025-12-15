@@ -1,90 +1,133 @@
-[2025-11-27 16:39:32] [INFO] Phát hiện người mới tại (122.47802734375, 5.0224609375), cố gắng nhận diện...
-[2025-11-27 16:39:32] [INFO] [Person 1] Người lạ xuất hiện (không nhận diện được)
-[2025-11-27 16:39:34] [INFO] Phát hiện người mới tại (403.28125, 503.8785705566406), cố gắng nhận diện...
-[2025-11-27 16:39:34] [INFO] [Person 8] Người lạ xuất hiện (không nhận diện được)
-[2025-11-27 16:39:37] [INFO] Phát hiện người mới tại (443.2213134765625, 472.8057861328125), cố gắng nhận diện...
-[2025-11-27 16:39:38] [INFO] [Person 10] Người quen: 1003 (score=0.52)
-[2025-11-27 16:42:20] [INFO] Phát hiện người mới tại (122.47802734375, 5.0224609375), cố gắng nhận diện...
-[2025-11-27 16:42:20] [INFO] [Person 1] Người lạ xuất hiện (không nhận diện được)
-[2025-11-27 16:42:23] [INFO] Phát hiện người mới tại (403.28125, 503.8785705566406), cố gắng nhận diện...
-[2025-11-27 16:42:23] [INFO] [Person 8] Người lạ xuất hiện (không nhận diện được)
-[2025-11-27 16:42:26] [INFO] Phát hiện người mới tại (443.2213134765625, 472.8057861328125), cố gắng nhận diện...
-[2025-11-27 16:42:27] [INFO] [Person 10] Người quen: 1003 (score=0.52)
-[2025-11-27 16:46:15] [INFO] Phát hiện người mới tại (612.5556640625, 511.71600341796875), cố gắng nhận diện...
-[2025-11-27 16:46:16] [INFO] [Person 7] Người lạ xuất hiện (không nhận diện được)
-[2025-11-27 16:46:36] [INFO] Phát hiện người mới tại (612.5556640625, 511.71600341796875), cố gắng nhận diện...
-[2025-11-27 16:46:36] [INFO] [Person 7] Người lạ xuất hiện (không nhận diện được)
-[2025-11-27 16:49:32] [INFO] Phát hiện người mới tại (612.5556640625, 511.71600341796875), cố gắng nhận diện...
-[2025-11-27 16:49:33] [INFO] [Person 7] Người lạ xuất hiện (không nhận diện được)
-[2025-11-27 16:52:14] [INFO] Phát hiện người mới tại (612.5556640625, 511.71600341796875), cố gắng nhận diện...
-[2025-11-27 16:52:15] [INFO] [Person 7] Người lạ xuất hiện (không nhận diện được)
-[2025-11-27 16:52:52] [INFO] Phát hiện người mới tại (122.47802734375, 5.0224609375), cố gắng nhận diện...
-[2025-11-27 16:52:52] [INFO] [Person 1] Người lạ xuất hiện (không nhận diện được)
-[2025-11-27 16:52:54] [INFO] Phát hiện người mới tại (403.28125, 503.8785705566406), cố gắng nhận diện...
-[2025-11-27 16:52:55] [INFO] [Person 8] Người lạ xuất hiện (không nhận diện được)
-[2025-11-27 16:52:58] [INFO] Phát hiện người mới tại (443.2213134765625, 472.8057861328125), cố gắng nhận diện...
-[2025-11-27 16:52:59] [INFO] [Person 10] Người quen: 1003 (score=0.52)
-[2025-11-27 16:53:11] [INFO] Phát hiện người mới tại (286.14666748046875, 409.85821533203125), cố gắng nhận diện...
-[2025-11-27 16:53:12] [INFO] [Person None] Người quen: 1003 (score=0.48)
-[2025-11-27 16:53:12] [INFO] Phát hiện người mới tại (186.33590698242188, 307.3524169921875), cố gắng nhận diện...
-[2025-11-27 16:53:13] [INFO] [Person 42] Người quen: 1003 (score=0.62)
-[2025-11-27 16:53:22] [INFO] Phát hiện người mới tại (324.25042724609375, 422.2589416503906), cố gắng nhận diện...
-[2025-11-27 16:53:23] [INFO] [Person 56] Người quen: 1003 (score=0.56)
-[2025-11-27 16:53:40] [INFO] Phát hiện người mới tại (227.536376953125, 387.472900390625), cố gắng nhận diện...
-[2025-11-27 16:53:41] [INFO] [Person None] Người quen: 1003 (score=0.47)
-[2025-11-27 16:53:41] [INFO] Phát hiện người mới tại (11.31805419921875, 273.467529296875), cố gắng nhận diện...
-[2025-11-27 16:53:42] [INFO] [Person 92] Người quen: 1003 (score=0.55)
-[2025-11-27 16:53:42] [INFO] Phát hiện người mới tại (4.87811279296875, 81.6317138671875), cố gắng nhận diện...
-[2025-11-27 16:53:43] [INFO] [Person 97] Người quen: 1003 (score=0.47)
-[2025-11-27 16:53:49] [INFO] Phát hiện người mới tại (358.61187744140625, 430.02886962890625), cố gắng nhận diện...
-[2025-11-27 16:53:50] [INFO] [Person 106] Người quen: 1003 (score=0.54)
-[2025-11-27 17:05:00] [INFO] Phát hiện người mới tại (122.47802734375, 5.0224609375), cố gắng nhận diện...
-[2025-11-27 17:05:00] [INFO] [Person 1] Người lạ xuất hiện (không nhận diện được)
-[2025-11-27 17:05:03] [INFO] Phát hiện người mới tại (403.28125, 503.8785705566406), cố gắng nhận diện...
-[2025-11-27 17:05:04] [INFO] [Person 8] Người lạ xuất hiện (không nhận diện được)
-[2025-11-27 17:05:08] [INFO] Phát hiện người mới tại (443.2213134765625, 472.8057861328125), cố gắng nhận diện...
-[2025-11-27 17:05:09] [INFO] [Person 10] Người quen: 1003 (score=0.52)
-[2025-11-27 17:05:27] [INFO] Phát hiện người mới tại (286.14666748046875, 409.85821533203125), cố gắng nhận diện...
-[2025-11-27 17:05:28] [INFO] [Person None] Người quen: 1003 (score=0.48)
-[2025-11-27 17:05:28] [INFO] Phát hiện người mới tại (218.82037353515625, 351.85693359375), cố gắng nhận diện...
-[2025-11-27 17:05:29] [INFO] [Person 42] Người quen: 1003 (score=0.62)
-[2025-11-27 17:05:42] [INFO] Phát hiện người mới tại (324.25042724609375, 422.2589416503906), cố gắng nhận diện...
-[2025-11-27 17:05:43] [INFO] [Person 56] Người quen: 1003 (score=0.56)
-[2025-11-27 17:06:06] [INFO] Phát hiện người mới tại (227.536376953125, 387.472900390625), cố gắng nhận diện...
-[2025-11-27 17:06:07] [INFO] [Person None] Người quen: 1003 (score=0.47)
-[2025-11-27 17:06:07] [INFO] Phát hiện người mới tại (156.71290588378906, 332.7130126953125), cố gắng nhận diện...
-[2025-11-27 17:06:08] [INFO] [Person 92] Người quen: 1003 (score=0.54)
-[2025-11-27 17:06:10] [INFO] Phát hiện người mới tại (4.87811279296875, 81.6317138671875), cố gắng nhận diện...
-[2025-11-27 17:06:10] [INFO] [Person 97] Người quen: 1003 (score=0.47)
-[2025-11-27 17:06:19] [INFO] Phát hiện người mới tại (358.61187744140625, 430.02886962890625), cố gắng nhận diện...
-[2025-11-27 17:06:20] [INFO] [Person 106] Người quen: 1003 (score=0.54)
-[2025-11-27 17:10:47] [INFO] Phát hiện người mới tại (612.5556640625, 511.71600341796875), cố gắng nhận diện...
-[2025-11-27 17:10:48] [INFO] [Person 7] Người lạ xuất hiện (không nhận diện được)
-[2025-11-27 20:28:30] [INFO] Phát hiện người mới tại (122.47802734375, 5.0224609375), cố gắng nhận diện...
-[2025-11-27 20:28:31] [INFO] [Person 1] Người lạ xuất hiện (không nhận diện được)
-[2025-11-27 20:28:34] [INFO] Phát hiện người mới tại (403.28125, 503.8785705566406), cố gắng nhận diện...
-[2025-11-27 20:28:35] [INFO] [Person 8] Người lạ xuất hiện (không nhận diện được)
-[2025-11-27 20:28:39] [INFO] Phát hiện người mới tại (443.2213134765625, 472.8057861328125), cố gắng nhận diện...
-[2025-11-27 20:28:39] [INFO] [Person 10] Người quen: 1003 (score=0.52)
-[2025-11-27 20:28:57] [INFO] Phát hiện người mới tại (286.14666748046875, 409.85821533203125), cố gắng nhận diện...
-[2025-11-27 20:28:58] [INFO] [Person None] Người quen: 1003 (score=0.48)
-[2025-11-27 20:28:58] [INFO] Phát hiện người mới tại (218.82037353515625, 351.85693359375), cố gắng nhận diện...
-[2025-11-27 20:28:58] [INFO] [Person 42] Người quen: 1003 (score=0.62)
-[2025-11-27 20:29:12] [INFO] Phát hiện người mới tại (324.25042724609375, 422.2589416503906), cố gắng nhận diện...
-[2025-11-27 20:29:12] [INFO] [Person 56] Người quen: 1003 (score=0.56)
-[2025-11-27 20:36:14] [INFO] Phát hiện người mới tại (122.47802734375, 5.0224609375), cố gắng nhận diện...
-[2025-11-27 20:36:14] [INFO] [Person 1] Người lạ xuất hiện (không nhận diện được)
-[2025-11-27 20:36:18] [INFO] Phát hiện người mới tại (403.28125, 503.8785705566406), cố gắng nhận diện...
-[2025-11-27 20:36:18] [INFO] [Person 8] Người lạ xuất hiện (không nhận diện được)
-[2025-11-27 20:36:22] [INFO] Phát hiện người mới tại (443.2213134765625, 472.8057861328125), cố gắng nhận diện...
-[2025-11-27 20:36:23] [INFO] [Person 10] Người quen: 1003 (score=0.52)
-[2025-11-27 20:49:49] [INFO] Phát hiện người mới tại (122.47802734375, 5.0224609375), cố gắng nhận diện...
-[2025-11-27 20:49:49] [INFO] [Person 1] Người lạ xuất hiện (không nhận diện được)
-[2025-11-27 20:49:52] [INFO] Phát hiện người mới tại (403.28125, 503.8785705566406), cố gắng nhận diện...
-[2025-11-27 20:49:53] [INFO] [Person 8] Người lạ xuất hiện (không nhận diện được)
-[2025-11-27 20:49:57] [INFO] Phát hiện người mới tại (443.2213134765625, 472.8057861328125), cố gắng nhận diện...
-[2025-11-27 20:49:57] [INFO] [Person 10] Người quen: 1003 (score=0.52)
-[2025-11-27 20:50:15] [INFO] Phát hiện người mới tại (286.14666748046875, 409.85821533203125), cố gắng nhận diện...
-[2025-11-27 20:50:16] [INFO] [Person None] Người quen: 1003 (score=0.48)
-[2025-11-27 20:50:16] [INFO] Phát hiện người mới tại (218.82037353515625, 351.85693359375), cố gắng nhận diện...
-[2025-11-27 20:50:17] [INFO] [Person 42] Người quen: 1003 (score=0.62)
+[2025-12-13 23:28:30] [INFO] [EVENT] Người lạ xuất hiện. ID=2
+[2025-12-13 23:28:34] [INFO] [TIMEOUT] Không nhận diện được sau 5.0s. ID=1
+[2025-12-13 23:28:34] [INFO] [EVENT] Người lạ xuất hiện. ID=1
+[2025-12-13 23:28:35] [INFO] [EVENT] Người lạ ID 2 rời khỏi khu vực.
+[2025-12-13 23:28:36] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
+[2025-12-13 23:28:36] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
+[2025-12-13 23:28:38] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.61)
+[2025-12-13 23:28:47] [INFO] [EVENT] dung rời khỏi khu vực.
+[2025-12-13 23:28:49] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.42)
+[2025-12-13 23:28:51] [INFO] [EVENT] dung rời khỏi khu vực.
+[2025-12-13 23:28:51] [INFO] [EVENT] Người lạ xuất hiện. ID=32
+[2025-12-13 23:28:51] [INFO] [EVENT] Người lạ ID 32 rời khỏi khu vực.
+[2025-12-13 23:28:51] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
+[2025-12-13 23:28:52] [INFO] [EVENT] Người lạ xuất hiện. ID=32
+[2025-12-13 23:28:53] [INFO] [EVENT] Người lạ xuất hiện. ID=2
+[2025-12-13 23:28:58] [INFO] [EVENT] Người lạ ID 32 rời khỏi khu vực.
+[2025-12-13 23:28:58] [INFO] [EVENT] Người lạ xuất hiện. ID=32
+[2025-12-13 23:28:59] [INFO] [EVENT] Người lạ xuất hiện. ID=43
+[2025-12-13 23:28:59] [INFO] [EVENT] Người lạ ID 32 rời khỏi khu vực.
+[2025-12-13 23:29:00] [INFO] [EVENT] Người lạ ID 43 rời khỏi khu vực.
+[2025-12-13 23:29:00] [INFO] [EVENT] Người lạ xuất hiện. ID=32
+[2025-12-13 23:29:00] [INFO] [EVENT] Người lạ xuất hiện. ID=43
+[2025-12-13 23:29:00] [INFO] [EVENT] Người lạ ID 43 rời khỏi khu vực.
+[2025-12-13 23:29:01] [INFO] [EVENT] Người lạ xuất hiện. ID=43
+[2025-12-13 23:29:01] [INFO] [EVENT] Người lạ ID 32 rời khỏi khu vực.
+[2025-12-13 23:29:06] [INFO] [EVENT] Người lạ ID 43 rời khỏi khu vực.
+[2025-12-13 23:29:07] [INFO] [EVENT] Người lạ (ID=2) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
+[2025-12-13 23:29:10] [INFO] [EVENT] unknown rời khỏi khu vực.
+[2025-12-13 23:29:10] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.60)
+[2025-12-13 23:29:11] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.64)
+[2025-12-13 23:29:11] [INFO] [EVENT] dung rời khỏi khu vực.
+[2025-12-13 23:29:12] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.65)
+[2025-12-13 23:29:12] [INFO] [EVENT] Người lạ ID 2 rời khỏi khu vực.
+[2025-12-13 23:29:12] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
+[2025-12-13 23:29:18] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.66)
+[2025-12-13 23:29:18] [INFO] [EVENT] dung rời khỏi khu vực.
+[2025-12-13 23:29:18] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.69)
+[2025-12-13 23:29:18] [INFO] [EVENT] dung rời khỏi khu vực.
+[2025-12-13 23:29:18] [INFO] [EVENT] Người lạ xuất hiện. ID=43
+[2025-12-13 23:29:19] [INFO] [EVENT] Người lạ ID 43 rời khỏi khu vực.
+[2025-12-13 23:29:19] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
+[2025-12-13 23:29:20] [INFO] [EVENT] Người lạ xuất hiện. ID=43
+[2025-12-13 23:29:20] [INFO] [EVENT] dung rời khỏi khu vực.
+[2025-12-13 23:29:21] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.62)
+[2025-12-13 23:29:25] [INFO] [EVENT] dung rời khỏi khu vực.
+[2025-12-13 23:29:27] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.69)
+[2025-12-13 23:29:28] [INFO] [EVENT] dung rời khỏi khu vực.
+[2025-12-13 23:29:28] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.66)
+[2025-12-13 23:29:31] [INFO] [EVENT] dung rời khỏi khu vực.
+[2025-12-13 23:29:34] [INFO] [EVENT] dung xuất hiện. ID=1003, score=0.65)
+[2025-12-13 23:29:34] [INFO] [EVENT] dung rời khỏi khu vực.
+[2025-12-14 23:12:55] [INFO] [EVENT] Người lạ xuất hiện. ID=1
+[2025-12-14 23:12:56] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
+[2025-12-14 23:12:56] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
+[2025-12-14 23:12:56] [INFO] [EVENT] Người lạ xuất hiện. ID=8
+[2025-12-14 23:12:57] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
+[2025-12-14 23:13:07] [INFO] [EVENT] Người lạ ID 8 rời khỏi khu vực.
+[2025-12-14 23:13:07] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
+[2025-12-14 23:13:07] [INFO] [EVENT] Người lạ xuất hiện. ID=15
+[2025-12-14 23:13:08] [INFO] [EVENT] Người lạ ID 15 rời khỏi khu vực.
+[2025-12-14 23:13:08] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
+[2025-12-14 23:14:41] [INFO] [EVENT] Người lạ xuất hiện. ID=8
+[2025-12-14 23:14:41] [INFO] [EVENT] Người lạ xuất hiện. ID=1
+[2025-12-14 23:14:42] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
+[2025-12-14 23:14:43] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
+[2025-12-14 23:17:24] [INFO] [EVENT] Người lạ xuất hiện. ID=8
+[2025-12-14 23:17:24] [INFO] [EVENT] Người lạ xuất hiện. ID=1
+[2025-12-14 23:17:25] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
+[2025-12-14 23:17:26] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
+[2025-12-14 23:18:01] [INFO] [EVENT] Người lạ xuất hiện. ID=8
+[2025-12-14 23:18:01] [INFO] [EVENT] Người lạ xuất hiện. ID=1
+[2025-12-14 23:18:02] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
+[2025-12-14 23:18:03] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
+[2025-12-14 23:20:44] [INFO] [EVENT] Người lạ xuất hiện. ID=8
+[2025-12-14 23:20:44] [INFO] [EVENT] Người lạ xuất hiện. ID=1
+[2025-12-14 23:20:44] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
+[2025-12-14 23:20:46] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
+[2025-12-14 23:21:53] [INFO] [EVENT] Người lạ xuất hiện. ID=8
+[2025-12-14 23:21:53] [INFO] [EVENT] Người lạ xuất hiện. ID=1
+[2025-12-14 23:21:54] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
+[2025-12-14 23:21:55] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
+[2025-12-14 23:23:53] [INFO] [TIMEOUT] Không nhận diện được sau 5.0s. ID=8
+[2025-12-14 23:23:53] [INFO] [EVENT] Người lạ xuất hiện. ID=8
+[2025-12-14 23:23:53] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
+[2025-12-14 23:23:54] [INFO] [EVENT] Người lạ xuất hiện. ID=1
+[2025-12-14 23:23:55] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
+[2025-12-14 23:25:24] [INFO] [EVENT] Người lạ xuất hiện. ID=8
+[2025-12-14 23:25:25] [INFO] [EVENT] Người lạ xuất hiện. ID=1
+[2025-12-14 23:25:25] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
+[2025-12-14 23:25:26] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
+[2025-12-14 23:25:36] [INFO] [EVENT] Người lạ ID 8 rời khỏi khu vực.
+[2025-12-14 23:25:36] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
+[2025-12-14 23:25:37] [INFO] [EVENT] Người lạ xuất hiện. ID=15
+[2025-12-14 23:25:38] [INFO] [EVENT] Người lạ ID 15 rời khỏi khu vực.
+[2025-12-14 23:25:38] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
+[2025-12-14 23:27:28] [INFO] [TIMEOUT] Không nhận diện được sau 5.0s. ID=8
+[2025-12-14 23:27:28] [INFO] [EVENT] Người lạ xuất hiện. ID=8
+[2025-12-14 23:27:29] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
+[2025-12-14 23:27:29] [INFO] [EVENT] Người lạ xuất hiện. ID=1
+[2025-12-14 23:27:30] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
+[2025-12-14 23:29:13] [INFO] [EVENT] Người lạ xuất hiện. ID=8
+[2025-12-14 23:29:13] [INFO] [EVENT] Người lạ xuất hiện. ID=1
+[2025-12-14 23:29:13] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
+[2025-12-14 23:29:15] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
+[2025-12-14 23:31:42] [INFO] [EVENT] Người lạ xuất hiện. ID=8
+[2025-12-14 23:31:43] [INFO] [EVENT] Người lạ xuất hiện. ID=1
+[2025-12-14 23:31:43] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
+[2025-12-14 23:31:44] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
+[2025-12-14 23:35:10] [INFO] [EVENT] Người lạ xuất hiện. ID=8
+[2025-12-14 23:35:10] [INFO] [EVENT] Người lạ xuất hiện. ID=1
+[2025-12-14 23:35:11] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
+[2025-12-14 23:35:12] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
+[2025-12-14 23:40:16] [INFO] [EVENT] Người lạ xuất hiện. ID=8
+[2025-12-14 23:40:16] [INFO] [EVENT] Người lạ xuất hiện. ID=1
+[2025-12-14 23:40:17] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
+[2025-12-14 23:40:18] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
+[2025-12-14 23:45:03] [INFO] [EVENT] Người lạ xuất hiện. ID=8
+[2025-12-14 23:45:03] [INFO] [EVENT] Người lạ xuất hiện. ID=1
+[2025-12-14 23:45:04] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
+[2025-12-14 23:45:05] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
+[2025-12-14 23:49:13] [INFO] [EVENT] Người lạ xuất hiện. ID=8
+[2025-12-14 23:49:13] [INFO] [EVENT] Người lạ xuất hiện. ID=1
+[2025-12-14 23:49:14] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
+[2025-12-14 23:49:15] [INFO] [EVENT] Người lạ (ID=8) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
+[2025-12-14 23:50:37] [INFO] [EVENT] Người lạ xuất hiện. ID=1
+[2025-12-14 23:50:39] [INFO] [EVENT] Người lạ ID 1 rời khỏi khu vực.
+[2025-12-14 23:50:39] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
+[2025-12-14 23:50:40] [INFO] [EVENT] Người lạ xuất hiện. ID=12
+[2025-12-14 23:50:41] [INFO] [EVENT] Người lạ ID 12 rời khỏi khu vực.
+[2025-12-14 23:50:41] [INFO] [EVENT] Không còn người lạ nào trong khu vực.
+[2025-12-14 23:50:41] [INFO] [EVENT] Người lạ xuất hiện. ID=4
+[2025-12-14 23:50:43] [INFO] [EVENT] Người lạ (ID=4) đứng lâu và trong khu vực không có người quen nào, phát cảnh báo và gửi mail cho chủ nhà.
+[2025-12-14 23:50:53] [INFO] [EVENT] Người lạ xuất hiện. ID=23

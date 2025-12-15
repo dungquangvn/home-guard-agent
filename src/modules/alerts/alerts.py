@@ -79,6 +79,8 @@ class AlertService:
 
         audio_path = self.config.get("audio_path", "data/alerts.wav")
         
+        print(f"AUDIO AVAILABLE: {AUDIO_AVAILABLE}, os.path.exists: {os.path.exists(audio_path)}")
+        
         if AUDIO_AVAILABLE and os.path.exists(audio_path):
             try:
                 self.is_playing_audio = True
@@ -144,8 +146,8 @@ if __name__ == "__main__":
         "sender_email": "",    # Thay bằng email test nếu muốn
         "sender_password": "",   # App password
         "receiver_email": "",
-        "audio_path": "data/alerts.wav",           # Đảm bảo đường dẫn đúng hoặc file tồn tại
-        "log_file_path": "data/test_alert_log.txt"  # File log riêng cho lúc test
+        "audio_path": "data/alerts.mp3",           # Đảm bảo đường dẫn đúng hoặc file tồn tại
+        "log_file_path": "logs/test_alert_log.txt"  # File log riêng cho lúc test
     }
 
     # 2. Tạo dữ liệu giả lập (Mock data) giống output của model

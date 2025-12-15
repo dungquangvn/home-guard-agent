@@ -1,8 +1,14 @@
 from src.modules.recognition.face_recognitor import FaceRecognitor
+from src.modules.alerts.alert_service import AlertService
 from src.core.state_manager import StateManager
 from src.modules.logging.logger import Logger
+from concurrent.futures import ThreadPoolExecutor, TimeoutError
 
-def on_new_person(face_recognitor: FaceRecognitor, logger: Logger, state_manager: StateManager):
+RECOGNITION_TIMEOUT = 5.0
+
+executor = ThreadPoolExecutor(max_workers=3)
+
+def on_new_person(face_recognitor: FaceRecognitor, alert_service: AlertService, logger: Logger, state_manager: StateManager):
     """
     Handler cho event "new_person".
     Event format:
@@ -19,8 +25,6 @@ def on_new_person(face_recognitor: FaceRecognitor, logger: Logger, state_manager
         bbox = detection.bbox
         x, y, w, h = bbox
         
-        logger.info(f"Phát hiện người mới tại ({x}, {y}), cố gắng nhận diện...")
-        
         height, width = frame_image.shape[:2]
         x1 = max(0, int(x))
         y1 = max(0, int(y))
@@ -28,12 +32,28 @@ def on_new_person(face_recognitor: FaceRecognitor, logger: Logger, state_manager
         y2 = min(height, int(y + h))
         person_image = frame_image[y1:y2, x1:x2, :]
 
+        future = executor.submit(
+            face_recognitor.recognize_faces,
+            [person_image]
+        )
 
         # Cố gắng nhận diện
-        people = face_recognitor.recognize_faces([person_image])
-        identity_id = people[0]['identity_id']
-        name = people[0]['name']
-        score = people[0]['score']
+        try:
+            people = future.result(timeout=RECOGNITION_TIMEOUT)
+            identity_id = people[0]['identity_id']
+            name = people[0]['name']
+            score = people[0]['score']
+            
+        except TimeoutError:
+            # HẾT 5s → BỎ LUÔN
+            future.cancel()
+            identity_id = None
+            name = "Unknown"
+            score = 0.0
+
+            logger.info(
+                f"[TIMEOUT] Không nhận diện được sau {RECOGNITION_TIMEOUT}s. ID={detection.tracker_id}"
+            )
         
         detection.identity_id = identity_id
         detection.type = "person"
@@ -45,13 +65,14 @@ def on_new_person(face_recognitor: FaceRecognitor, logger: Logger, state_manager
         detection.is_processing = False
 
         # Xử lý dựa vào kết quả nhận diện
-        if detection.is_strange:
+        if not detection.is_strange:
+            alert_service.stop_alarm_sound()
             logger.info(
-                f"[Person {detection.tracker_id}] Người lạ xuất hiện (không nhận diện được)"
+                f"[EVENT] {detection.name} xuất hiện. ID={identity_id}, score={score:.2f})"
             )
         else:
             logger.info(
-                f"[Person {detection.tracker_id}] Người quen: {identity_id} (score={score:.2f})"
+                f"[EVENT] Người lạ xuất hiện. ID={detection.tracker_id}"
             )
             
         state_manager.update(detection)

@@ -27,3 +27,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+alert_frame_images/
+recordings/
+data/
+.env

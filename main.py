@@ -1,29 +1,29 @@
+import os
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+
 import asyncio
 import time
 import cv2
 from typing import List, Dict, Optional
 from ultralytics import YOLO
 from src.modules.camera.camera import Camera
-from src.modules.alerts.alerts import AlertService
-from src.modules.analysis.Analysis import Analysis
+from src.modules.alerts.alert_service import AlertService
 from src.modules.logging.logger import Logger
-from src.modules.recognition.face_cropper import FaceCropper
 from src.modules.recognition.face_recognitor import FaceRecognitor
-# from src.modules.recognition.plate_recognitor import PlateRecognitor
+from src.modules.recognition.plate_recognitor import CustomLicensePlateRecognizer
 from src.modules.video_recorder.video_recorder import VideoRecorder
+# from src.modules.alerts.alerts import AlertService
 from src.core.event_extractor import EventExtractor
 from src.core.event_bus import EventBus
 from src.core.state_manager import StateManager
 from src.event_handlers.on_new_person import on_new_person
-# from src.event_handlers.on_new_vehicle import on_new_vehicle
-# from src.event_handlers.on_object_left import on_object_left
-# from src.event_handlers.on_is_stranger import on_is_stranger
-# from src.event_handlers.on_stranger_over_30_seconds import on_stranger_over_30_seconds
-from src.utils.classes import Detection
+from src.event_handlers.on_new_vehicle import on_new_vehicle
+from src.event_handlers.on_object_left import on_object_left
+from src.event_handlers.on_stranger_stay_long import on_stranger_stay_long
         
 async def main():
-    # cam = Camera(source="data/test_vid.mp4")
-    cam = Camera(source="data/vid_1.mp4")
+    cam = Camera(source=0)
+    # cam = Camera(source="data/nguoi_la.mp4")
     video_recorder = VideoRecorder(
         fps=cam.fps,
         width=cam.width,
@@ -32,25 +32,21 @@ async def main():
     
     tracker = YOLO('models/yolo11n.pt')
 
-    # face_cropper = FaceCropper(conf=0.5)
-    face_recognitor = FaceRecognitor(face_db_path='models/face_db.pkl')
-    # plate_recognitor = PlateRecognitor()
-    # alert_manager = AlertManager()
-    # time_analyzer = TimeAnalyzer()
+    face_recognitor = FaceRecognitor(face_db_path='models/face_db.pkl', sim_threshold=0.32)
+    plate_recognitor = CustomLicensePlateRecognizer(threshold_conf=0.1)
+    alert_service = AlertService()
     logger = Logger()
     
-    state_manager = StateManager()
+    state_manager = StateManager(logger)
     event_extractor = EventExtractor(state_manager)
     event_bus = EventBus()
 
     # Subcribe sự kiện
-    event_bus.on("new_person", on_new_person(face_recognitor, logger, state_manager))
-    # event_bus.on("is_stranger", on_is_stranger(time_analyzer, logger))
-    # event_bus.on("new_vehicle", on_new_vehicle(plate_recognitor, logger))
-    # event_bus.on("object_left", on_object_left(logger))
-    # event_bus.on("stranger_over_30_seconds", on_stranger_over_30_seconds(alert_manager, logger))
-    
-    # start = time.time()
+    for _ in range(3):
+        event_bus.on("new_person", on_new_person(face_recognitor, alert_service, logger, state_manager))
+        event_bus.on("new_vehicle", on_new_vehicle(plate_recognitor, logger, state_manager))
+    event_bus.on("object_left", on_object_left(alert_service, logger, state_manager))
+    event_bus.on("stranger_stay_long", on_stranger_stay_long(alert_service, logger))
     
     while True:
         
@@ -60,7 +56,7 @@ async def main():
         
         newest_detections = []
         
-        if frame_data.get_id() % 8 == 1:
+        if frame_data.get_id() % 7 == 1:
             results = tracker.track(frame_data.get_image(), persist=True)
             
             # Làm các thứ với results giúp phát hiện events

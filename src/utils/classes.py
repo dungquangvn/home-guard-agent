@@ -24,12 +24,14 @@ class Detection:
         self.first_seen = time.time()
         self.last_seen = self.first_seen
         self.is_recognized = False      # đã hoàn thành nhận diện hay chưa
+        self.last_recognized_time = -1
+        self.recognition_attempts = 0
         self.is_processing = True
 
         # Nếu type là person
         self.name = "unknown"
         
-        # Nếu type in ['car', 'motorcycle']
+        # Nếu type in ['car', 'motorcycle', 'bicycle']
         self.plate_number = "unknown"
     
 class FrameData:

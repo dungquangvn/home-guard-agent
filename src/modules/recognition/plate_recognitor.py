@@ -19,18 +19,20 @@ class CustomLicensePlateRecognizer:
     # Tham số khởi tạo là ngưỡng tin cậy để nhận diện một object là biển số
     def __init__(self, threshold_conf):
         if not self.__isInitialized : 
-            self.ocr = LicensePlateRecognizer("cct-xs-v1-global-model")
+            self.ocr = LicensePlateRecognizer("cct-s-v1-global-model")
             self.__isInitialized = True
             self.detect_model = YOLO('models/license_plate_detector_5.pt')
             self.conf = threshold_conf
             
     def __postProcessing(self, detected_lp) -> list[str]:
-            lp = re.sub(r'[^A-Za-z0-9.\- ]+', '', detected_lp)
-            match = re.match(r'(\d{2})([A-Z])(\d{4,5})', lp)
-            if match:
-                return lp
+        pass
+        # Loại bỏ các ký tự không mong muốn, chỉ giữ lại chữ và số
+            # lp = re.sub(r'[^A-Za-z0-9.\- ]+', '', detected_lp)
+            # match = re.match(r'(\d{2})([A-Z])(\d{4,5})', lp)
+            # if match:
+            #     return lp
 
-            return None
+            # return None
     
     def __preProcessing(self, img):
         pass
@@ -51,7 +53,7 @@ class CustomLicensePlateRecognizer:
             x1, y1, x2, y2 = box.xyxy[0]  
             conf = box.conf[0]  
             
-            print(f"check confident of object: {conf} " )
+            print(f"Found licencse plate bbox, conf={conf} " )
 
             self.plates_bouding_boxs.append({"x1": x1, "y1": y1, "x2": x2, "y2": y2})
 
@@ -72,13 +74,13 @@ class CustomLicensePlateRecognizer:
                 ocr_result = self.__postProcessing(ocr_result[0])
                 if ocr_result is not None:
                     license_texts.append(ocr_result)
-                
+                else:
+                    print("OCR unable to recognize plate number")
 
         return license_texts
 
         
 if __name__ == "__main__":
-
 
     recognizer = CustomLicensePlateRecognizer(threshold_conf=0.5)
     test_image = cv2.imread("data/plate_number_4.png", cv2.IMREAD_COLOR)
