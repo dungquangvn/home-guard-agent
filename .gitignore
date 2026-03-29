@@ -36,3 +36,4 @@ logs/
 src/modules/server/front_end/react/public/
 cln.py
 security_chat.py
+models/predictor.pth
