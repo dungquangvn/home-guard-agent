@@ -1,63 +1,85 @@
-import LightToggle from "../components/Light";
+import { useEffect, useState } from "react";
+import { getLogs } from "../services/logsService";
+
+const VIDEO_API_URL = "http://127.0.0.1:5000/video";
+
 export default function LiveVideo() {
-return (
-    <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center p-8">
-      
-      {/* Tiêu đề chính */}
-      <h1 className="text-4xl font-extrabold mb-10 text-teal-400 tracking-wider">
-        Smart Surveillance Hub
-      </h1>
+  const [latestLogs, setLatestLogs] = useState([]);
+  const [loadingLogs, setLoadingLogs] = useState(true);
 
-      {/* -------------------- CONTAINER CHÍNH (Camera + Control) -------------------- */}
-      {/* Grid 2 cột: Cột video lớn (2/3) và Cột điều khiển nhỏ (1/3) */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full max-w-6xl">
-        
-        {/* Cột 1: Video Live Stream */}
-        <div className="lg:col-span-2">
-          <div 
-            className="bg-gray-800 rounded-2xl shadow-2xl 
-                       overflow-hidden border-2 border-teal-500/50 
-                       transform hover:scale-[1.01] transition duration-300"
-          >
-            <h2 className="p-4 text-xl font-semibold border-b border-gray-700 bg-gray-700/50">
-              Live Feed
-            </h2>
-            <div className="relative w-full aspect-video">
-              <img
-                className="w-full h-full object-cover" 
-                src="http://127.0.0.1:5000/video" // Đảm bảo tên route đúng
-                alt="Camera Live"
-              />
-            </div>
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchLatestLogs = async () => {
+      try {
+        const logs = await getLogs();
+
+        if (isMounted) {
+          setLatestLogs(logs.slice(0, 3));
+          setLoadingLogs(false);
+        }
+      } catch (error) {
+        console.error("Error fetching latest logs:", error);
+        if (isMounted) setLoadingLogs(false);
+      }
+    };
+
+    fetchLatestLogs();
+    const intervalId = setInterval(fetchLatestLogs, 5000);
+
+    return () => {
+      isMounted = false;
+      clearInterval(intervalId);
+    };
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-gray-900 text-white p-6 md:p-8">
+      <div className="mx-auto w-full max-w-6xl space-y-6">
+        <section className="overflow-hidden rounded-2xl border border-teal-500/40 bg-gray-800 shadow-2xl">
+          <div className="border-b border-gray-700 bg-gray-700/50 p-4">
+            <h2 className="text-xl font-semibold text-teal-300">Live Feed</h2>
           </div>
-        </div>
-
-        {/* Cột 2: Control Module */}
-        <div className="lg:col-span-1 flex flex-col justify-center">
-          
-          <div 
-            className="bg-gray-800 p-8 rounded-2xl shadow-xl 
-                       border border-gray-700 hover:border-yellow-500 
-                       transition duration-300 transform hover:shadow-yellow-500/20"
-          >
-            <h3 className="text-xl font-bold mb-6 text-yellow-400 text-center">
-              Automatic Light Control
-            </h3>
-            
-            {/* Component LightToggle */}
-            <div className="flex flex-col items-center space-y-4">
-                <LightToggle />
-            </div>
-            
+          <div className="aspect-video w-full">
+            <img
+              className="h-full w-full object-cover"
+              src={VIDEO_API_URL}
+              alt="Camera Live"
+            />
           </div>
-        </div>
+        </section>
 
+        <section className="rounded-2xl border border-gray-700 bg-gray-800 p-5 shadow-xl">
+          <h3 className="mb-4 text-lg font-semibold text-red-300">3 Logs Mới Nhất</h3>
+
+          {loadingLogs ? (
+            <p className="text-sm text-gray-400">Đang tải logs...</p>
+          ) : latestLogs.length === 0 ? (
+            <p className="text-sm text-gray-400">Chưa có log nào.</p>
+          ) : (
+            <div className="space-y-3">
+              {latestLogs.map((log, index) => (
+                <div
+                  key={log.id ?? `${log.time}-${index}`}
+                  className="rounded-lg border border-gray-700 bg-gray-900/50 p-3"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <p className="font-semibold text-gray-100">
+                      {log.title || "LOG"}
+                    </p>
+                    <span className="whitespace-nowrap text-xs text-gray-500">
+                      {log.time || "--:--:--"}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-sm text-gray-300">
+                    {log.description || "Không có mô tả"}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
       </div>
-      
-      {/* Thông tin chân trang hoặc debug */}
-      <footer className="mt-10 text-gray-500 text-sm">
-        System Status: Online | Latency: Real-time
-      </footer>
     </div>
   );
 }

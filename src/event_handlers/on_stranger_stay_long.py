@@ -1,11 +1,9 @@
-from src.core.state_manager import StateManager
 from src.modules.logging.logger import Logger
 from src.modules.alerts.alert_service import AlertService
-from src.modules.video_recorder.video_recorder import EventVideoRecorder    
+from src.modules.video_recorder.video_recorder import EventVideoRecorder
 from src.utils.classes import Detection
-from sendgrid.helpers.mail import *
-import datetime, base64, os
-import cv2
+import datetime
+
 
 def on_stranger_stay_long(alert_service: AlertService, event_recorder: EventVideoRecorder, logger: Logger):
 
@@ -17,72 +15,46 @@ def on_stranger_stay_long(alert_service: AlertService, event_recorder: EventVide
         save_dir = "src/modules/server/front_end/react/public"
 
         event_recorder.save_event(save_dir, video_name)
-        
-        # frame_image = event["frame"].get_image()
-        # frame_image_path = f'src/modules/server/front_end/react/public/frame_{datetime.datetime.now().strftime("%Y%m%d_%H%M%S")}.jpg'
-        # frame_image_name = os.path.basename(frame_image_path)
-        # os.makedirs('src/modules/server/front_end/react/public/', exist_ok=True)
-        # cv2.imwrite(frame_image_path, frame_image)
 
         logger.warning(
-            title="[EVENT] Người lạ đứng lâu trong khu vực",
-            message=f"Người lạ (ID={det.tracker_id}) xuất hiện lâu trong khu vực mà không có người quen đi cùng.",
-            file_path=video_name
+            title="Alert: Unknown Person Staying Too Long",
+            system_label=(
+                "An unknown person is staying in the monitored area without any known person present "
+                f"(Track ID={det.tracker_id})."
+            ),
+            file_path=video_name,
         )
-        # alert_service.start_alarm_sound(loop=True)
-        
-        # subject = "[HOME GUARD] ⚠️ CẢNH BÁO: Người lạ đứng lâu trước nhà "
-        # f"(Track ID #{det.tracker_id}"
-        # html = build_email_html(det, image_cid="alert_frame")
-        # content = Content("text/html", html)
-        # alert_service.send_email(subject, content, frame_image_path)
+
+        print("[EVENT] Unknown person stayed too long in monitored area. Alert emitted.")
 
     return handler
-    
+
+
 def build_email_html(det: Detection, image_cid="alert_frame") -> str:
     now = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
     html = f"""
     <html>
-    <body style="font-family: Arial, sans-serif;">
-        <h2>⚠️ CẢNH BÁO AN NINH</h2>
+    <body style=\"font-family: Arial, sans-serif;\">
+        <h2>Security Alert</h2>
 
         <p>
-            Hệ thống <b>Home Guard</b> phát hiện <b>NGƯỜI LẠ</b>
-            đứng lâu trước khu vực giám sát.
+            Home Guard detected an <b>UNKNOWN PERSON</b>
+            staying too long in the monitored area.
         </p>
-        <p>Hình ảnh tại thời điểm cảnh báo:</p>
-        <img src="cid:{image_cid}" style="max-width:100%;border:1px solid #ccc;">
+        <p>Snapshot at alert time:</p>
+        <img src=\"cid:{image_cid}\" style=\"max-width:100%;border:1px solid #ccc;\">
 
-        <table border="1" cellpadding="6" cellspacing="0">
-            <tr>
-                <td><b>Thời gian</b></td>
-                <td>{now}</td>
-            </tr>
-            <tr>
-                <td><b>Loại đối tượng</b></td>
-                <td>Người</td>
-            </tr>
-            <tr>
-                <td><b>Track ID</b></td>
-                <td>{det.tracker_id}</td>
-            </tr>
-            <tr>
-                <td><b>Độ tin cậy nhận diện</b></td>
-                <td>{det.confidence:.2f}</td>
-            </tr>
-            <tr>
-                <td><b>Trạng thái</b></td>
-                <td>Người lạ</td>
-            </tr>
+        <table border=\"1\" cellpadding=\"6\" cellspacing=\"0\">
+            <tr><td><b>Time</b></td><td>{now}</td></tr>
+            <tr><td><b>Type</b></td><td>Person</td></tr>
+            <tr><td><b>Track ID</b></td><td>{det.tracker_id}</td></tr>
+            <tr><td><b>Confidence</b></td><td>{det.confidence:.2f}</td></tr>
+            <tr><td><b>Status</b></td><td>Unknown</td></tr>
         </table>
 
-        <p style="margin-top:10px;">
-            📸 Hình ảnh đối tượng tại thời điểm cảnh báo được đính kèm trong email.
-        </p>
-
-        <p style="font-size:12px;color:#777;">
-            Email này được gửi tự động bởi hệ thống Home Guard.
+        <p style=\"font-size:12px;color:#777;\">
+            This email was sent automatically by Home Guard.
         </p>
     </body>
     </html>

@@ -50,6 +50,20 @@ export default function Navbar() {
                     </span>
                 </NavLink>
 
+                <NavLink
+                    to="/chat"
+                    className={({ isActive }) =>
+                        `py-2 transition duration-200 ${isActive ? activeColor : defaultColor}`
+                    }
+                >
+                    <span className="flex items-center gap-2">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.29-3.226A6.948 6.948 0 012 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM6 9a1 1 0 100 2h2a1 1 0 100-2H6zm3 0a1 1 0 100 2h5a1 1 0 100-2H9z" clipRule="evenodd"></path>
+                        </svg>
+                        Security Chat
+                    </span>
+                </NavLink>
+
                 {/* Recorded Videos */}
                 <NavLink
                     to="/recorded"

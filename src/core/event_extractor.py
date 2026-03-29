@@ -21,7 +21,7 @@ class EventExtractor:
         boxes = results[0].boxes
 
         if boxes is None:
-            return events
+            return self.state_manager.detect_left_objects(current_ids)
 
         for i in range(len(boxes)):
             object_type_id = int(boxes.cls[i])
@@ -41,6 +41,10 @@ class EventExtractor:
             x = x_center - w / 2
             y = y_center - h / 2
             track_id = int(boxes.id[i]) if boxes.id is not None else None
+            if track_id is None:
+                # Skip untracked detections to avoid unstable state/object_left noise.
+                continue
+
             current_ids.append(track_id)
             conf = float(boxes.conf[i])
   
@@ -52,7 +56,7 @@ class EventExtractor:
             )
 
             # dùng state_manager để cập nhật trạng thái cho từng object detect được
-            events = self.state_manager.update_object(obj)
+            events.extend(self.state_manager.update_object(obj))
         
         # Phát hiện các object đã rời đi
         events += self.state_manager.detect_left_objects(current_ids)

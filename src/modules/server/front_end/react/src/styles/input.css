@@ -11,3 +11,43 @@
 .animate-loading-bar {
   animation: loading-bar 1.2s ease-in-out infinite;
 }
+
+.dual-range {
+  pointer-events: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+
+.dual-range::-webkit-slider-runnable-track {
+  height: 4px;
+  background: transparent;
+}
+
+.dual-range::-moz-range-track {
+  height: 4px;
+  background: transparent;
+}
+
+.dual-range::-webkit-slider-thumb {
+  pointer-events: auto;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  border: 2px solid #0f172a;
+  background: #2dd4bf;
+  cursor: pointer;
+  margin-top: -6px;
+}
+
+.dual-range::-moz-range-thumb {
+  pointer-events: auto;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  border: 2px solid #0f172a;
+  background: #2dd4bf;
+  cursor: pointer;
+}

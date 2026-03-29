@@ -1,62 +1,68 @@
-import { useState } from "react";
-import LogsItem from "./LogsItem";
+﻿import LogsItem from "./LogsItem";
+import { getLogIdentity } from "../../utils/logIdentity";
 
-export default function LogsList({ logs }) {
-  const ITEMS_PER_PAGE = 10;
+export default function LogsList({
+  logs,
+  page,
+  onPageChange,
+  itemsPerPage = 10,
+  selectedLogIdentity = "",
+  onSelectLog,
+}) {
+  const safePage = Number(page) > 0 ? Number(page) : 1;
+  const totalPages = Math.max(1, Math.ceil(logs.length / itemsPerPage));
 
-  const [page, setPage] = useState(1);
-
-  const totalPages = Math.ceil(logs.length / ITEMS_PER_PAGE);
-
-  // Cắt log theo từng trang (Logic giữ nguyên)
-  const slicedLogs = logs.slice(
-    (page - 1) * ITEMS_PER_PAGE,
-    page * ITEMS_PER_PAGE
-  );
+  const startIndex = (safePage - 1) * itemsPerPage;
+  const endIndex = safePage * itemsPerPage;
+  const slicedLogs = logs.slice(startIndex, endIndex);
 
   const handlePrev = () => {
-    if (page > 1) setPage(page - 1);
+    if (safePage > 1) {
+      onPageChange?.(safePage - 1);
+    }
   };
 
   const handleNext = () => {
-    if (page < totalPages) setPage(page + 1);
+    if (safePage < totalPages) {
+      onPageChange?.(safePage + 1);
+    }
   };
 
   return (
     <div className="w-full">
-      {/* Log List */}
       <div className="space-y-3">
-        {slicedLogs.map((log) => (
-          <LogsItem key={log.id} log={log} />
-        ))}
+        {slicedLogs.map((log, index) => {
+          const absoluteIndex = startIndex + index;
+          const identity = getLogIdentity(log, absoluteIndex);
+
+          return (
+            <LogsItem
+              key={identity}
+              log={log}
+              isSelected={identity === selectedLogIdentity}
+              onClick={() => onSelectLog?.(log, absoluteIndex)}
+            />
+          );
+        })}
       </div>
 
-      {/* Pagination */}
-      <div className="flex justify-center items-center gap-4 mt-8">
-        
-        {/* Nút Prev */}
+      <div className="mt-8 flex items-center justify-center gap-4">
         <button
           onClick={handlePrev}
-          disabled={page === 1}
-          // Style Dark Mode: nền xám, chữ trắng, hiệu ứng hover
-          className="px-4 py-2 rounded-lg bg-gray-600 text-white 
-                     hover:bg-gray-500 transition disabled:opacity-30 disabled:cursor-not-allowed"
+          disabled={safePage === 1}
+          className="rounded-lg bg-gray-600 px-4 py-2 text-white transition hover:bg-gray-500 disabled:cursor-not-allowed disabled:opacity-30"
         >
           &larr; Previous
         </button>
 
-        {/* Trang hiện tại */}
-        <span className="text-gray-400 font-medium">
-          Trang <span className="text-teal-400 font-bold">{page}</span> / {totalPages}
+        <span className="font-medium text-gray-400">
+          Trang <span className="font-bold text-teal-400">{safePage}</span> / {totalPages}
         </span>
 
-        {/* Nút Next */}
         <button
           onClick={handleNext}
-          disabled={page === totalPages}
-          // Style Dark Mode: nền xám, chữ trắng, hiệu ứng hover
-          className="px-4 py-2 rounded-lg bg-gray-600 text-white 
-                     hover:bg-gray-500 transition disabled:opacity-30 disabled:cursor-not-allowed"
+          disabled={safePage === totalPages}
+          className="rounded-lg bg-gray-600 px-4 py-2 text-white transition hover:bg-gray-500 disabled:cursor-not-allowed disabled:opacity-30"
         >
           Next &rarr;
         </button>

@@ -1,64 +1,64 @@
-import React from "react";
+﻿const getLogStyles = (title = "") => {
+  const upper = String(title).toUpperCase();
 
-// Hàm xác định màu sắc dựa trên tiêu đề (cấp độ) log
-const getLogStyles = (title) => {
-  const level = title.toUpperCase();
-  switch (level) {
-    case 'ERROR': 
-      return { iconBg: 'bg-red-600', text: 'text-red-400', titleColor: 'text-red-300' };
-    case 'WARNING': 
-      return { iconBg: 'bg-yellow-600', text: 'text-yellow-400', titleColor: 'text-yellow-300' };
-    case 'INFO': 
-      return { iconBg: 'bg-green-600', text: 'text-green-400', titleColor: 'text-green-300' };
-    default: 
-      return { iconBg: 'bg-gray-500', text: 'text-gray-400', titleColor: 'text-white' };
+  if (upper.includes("ERROR")) {
+    return { iconBg: "bg-red-600", titleColor: "text-red-300" };
   }
+
+  if (upper.includes("WARNING") || upper.includes("ALERT")) {
+    return { iconBg: "bg-yellow-600", titleColor: "text-yellow-300" };
+  }
+
+  if (upper.includes("INFO") || upper.includes("VERIFIED")) {
+    return { iconBg: "bg-green-600", titleColor: "text-green-300" };
+  }
+
+  return { iconBg: "bg-gray-500", titleColor: "text-white" };
 };
 
-export default function LogsItem({ log }) {
-  // Lấy style động
-  const { iconBg, titleColor, text } = getLogStyles(log.title);
-  
-  // Áp dụng Dark Mode styling cho LogItemComponent
-  const LogItemComponent = (
-    <div 
-      className="flex items-start gap-4 p-4 bg-gray-700 rounded-xl 
-                 border border-gray-600 hover:shadow-lg hover:border-teal-500/50 
-                 transition-all cursor-pointer" // Thêm cursor-pointer
-    >
-      {/* Icon (Màu động) */}
-      <div className={`w-3 h-3 mt-2 rounded-full ${iconBg} flex-shrink-0`}></div>
-
-      {/* Nội dung */}
-      <div className="flex-1">
-        {/* Title (Màu động) */}
-        <p className={`font-semibold ${titleColor}`}>{log.title}</p> 
-        {/* Description */}
-        <p className="text-sm text-gray-400 mt-1">{log.description}</p>
-      </div>
-
-      {/* Thời gian */}
-      <span className="text-xs text-gray-500 whitespace-nowrap">
-        {log.time}
-      </span>
-    </div>
-  );
+export default function LogsItem({ log, isSelected = false, onClick }) {
+  const { iconBg, titleColor } = getLogStyles(log?.title);
+  const hasFile = Boolean(log?.file_path);
 
   return (
-    <>
-      {/* Nếu có file_path, bọc trong thẻ <a> */}
-      {log.file_path ? (
-        <a 
-          href={log.file_path} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="block" // Dùng block để thẻ <a> chiếm toàn bộ chiều rộng
-        >
-          {LogItemComponent}
-        </a>
-      ) : (
-        LogItemComponent
-      )}
-    </>
+    <article
+      className={`rounded-xl border p-4 transition-all ${
+        isSelected
+          ? "border-teal-400 bg-gray-700/95 shadow-lg shadow-teal-500/10"
+          : "border-gray-600 bg-gray-700 hover:border-teal-500/50 hover:shadow-lg"
+      }`}
+    >
+      <button
+        type="button"
+        onClick={onClick}
+        className="w-full text-left"
+      >
+        <div className="flex items-start gap-4">
+          <div className={`mt-2 h-3 w-3 flex-shrink-0 rounded-full ${iconBg}`} />
+
+          <div className="flex-1">
+            <p className={`font-semibold ${titleColor}`}>{log?.title || "LOG"}</p>
+            <p className="mt-1 text-sm text-gray-300">{log?.description || "Khong co mo ta"}</p>
+          </div>
+
+          <span className="whitespace-nowrap text-xs text-gray-400">
+            {log?.time || log?.occurrence_time || "--:--:--"}
+          </span>
+        </div>
+      </button>
+
+      {hasFile ? (
+        <div className="mt-3 flex justify-end">
+          <a
+            href={log.file_path}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-semibold text-teal-300 hover:text-teal-200"
+          >
+            Open attachment
+          </a>
+        </div>
+      ) : null}
+    </article>
   );
 }

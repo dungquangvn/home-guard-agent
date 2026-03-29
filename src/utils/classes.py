@@ -27,6 +27,10 @@ class Detection:
         self.last_recognized_time = -1
         self.recognition_attempts = 0
         self.is_processing = True
+        self.recognition_history = []         # [{identity_id, name, score}, ...]
+        self.last_logged_identity_key = None  # tuple(identity_id_or_-1, normalized_name)
+        self.stable_identity_key = None       # tuple(identity_id_or_-1, normalized_name)
+        self.recognition_state = "pending"    # pending|collecting|stable_known|stable_unknown|corrected
 
         # Nếu type là person
         self.name = "unknown"
@@ -41,12 +45,12 @@ class FrameData:
         self.objects: List[Detection] = []  # Các đối tượng detect/recognize
         
     def draw_object(self, detection: Detection):
-        if detection.is_processing:
+        if detection.type == "person" and detection.recognition_state in ["pending", "collecting"]:
             color = (0, 255, 255)   # Yellow: pending recognize
-
-        elif detection.is_strange:
+        elif detection.type == "person" and detection.recognition_state == "corrected":
+            color = (0, 165, 255)   # Orange: corrected
+        elif detection.type == "person" and detection.recognition_state == "stable_unknown":
             color = (0, 0, 255)     # Red: stranger
-
         else:
             color = (0, 255, 0)  # Green: normal
 
@@ -59,10 +63,15 @@ class FrameData:
         cv2.rectangle(self.image, (x1, y1), (x2, y2), color, 2)
 
         if detection.type == 'person':
-            if detection.is_processing:
+            if detection.recognition_state == "pending":
                 label = f"human | pending"
-            elif detection.is_recognized:
+            elif detection.recognition_state == "collecting":
+                votes = len(detection.recognition_history)
+                label = f"human | collected {votes} faces..."
+            elif detection.recognition_state in ["stable_known", "corrected"]:
                 label = f"human | name: {detection.name} | id: {detection.identity_id} | {detection.confidence:.2f}"
+            elif detection.recognition_state == "stable_unknown":
+                label = f"human | name: unknown | {detection.confidence:.2f}"
             else:
                 label = f"human | name: unknown"
         elif detection.type == 'motorcycle':

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getLogs } from '../../services/logsService';
+import { getLogs } from '../services/logsService';
 
 
 export default function useLogs() {

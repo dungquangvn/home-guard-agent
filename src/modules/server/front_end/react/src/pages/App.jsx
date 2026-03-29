@@ -3,19 +3,18 @@ import Navbar from "../components/Navbar";
 import LiveVideo from "./LiveVideo";
 import Logs from "./Logs";
 import RecordedVideos from "./RecordedVideos";
-import Alert from "../components/AlertComponents/Alert";
+import SecurityChat from "./SecurityChat";
 
 export default function App() {
     return (
         <BrowserRouter>
-
-            <Alert></Alert>
             <Navbar />
 
             <Routes>
                 <Route path="/" element={<LiveVideo />} />
                 <Route path="/logs" element={<Logs />} />
                 <Route path="/recorded" element={<RecordedVideos />} />
+                <Route path="/chat" element={<SecurityChat />} />
             </Routes>
         </BrowserRouter>
     );
