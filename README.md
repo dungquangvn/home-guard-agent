@@ -13,7 +13,7 @@ Argus supports both video files and live camera streams.
 - Detects humans and vehicles in real time  
 - Recognizes registered individuals and distinguishes unknown persons  
 
-![alt text](readme_images\recog-1.png)
+![alt text](readme_images/recog-1.png)
 
 ### License Plate OCR
 - Extracts vehicle license plate numbers from frames
@@ -26,15 +26,15 @@ Argus supports both video files and live camera streams.
 - Converts raw detections into standardized, human-readable event logs  
 - Stores timeline-friendly records for auditing and analysis
 
-![alt text](<readme_images\log.png>)
+![alt text](<readme_images/log.png>)
 
 ### AI-Powered Security Log Querying (RAG)
 - Enables natural language querying over historical logs  
 - Supports time-aware investigation through retrieval-augmented generation  
 
-![alt text](<readme_images\rag-1.png>)
+![alt text](<readme_images/rag-1.png>)
 
-![alt text](<readme_images\rag-2.png>)
+![alt text](<readme_images/rag-2.png>)
 
 ---
 
@@ -42,14 +42,14 @@ Argus supports both video files and live camera streams.
 
 At a high level, Argus operates as a real-time pipeline:
 
-![alt text](<readme_images\ai_process_pipeline.png>)
+![alt text](<readme_images/ai_process_pipeline.png>)
 
 1. Frames are captured from a camera or video source  
 2. Objects are detected and tracked  
 3. High-level events are extracted (`new_person`, `new_vehicle`, `object_left`, `stranger_stay_long`)
 4. Face recognition and license plate OCR are applied  
 
-![alt text](readme_images\chatbot.png)
+![alt text](readme_images/chatbot.png)
 
 5. Visual attributes are extracted from frames and converted into standardized natural language captions  
 6. Structured logs, including event types, visual details, and timestamps, are generated and stored  
@@ -69,7 +69,7 @@ Argus improves reliability by aggregating recognition evidence across multiple f
 - Confirms identity only after reaching a stability threshold  
 - Uses a recognition state machine (`collecting`, `stable_known`, `stable_unknown`, `corrected`) to reduce identity flicker and enable self-correction  
 
-![alt text](<readme_images\voting_mechanism.png>)
+![alt text](<readme_images/voting_mechanism.png>)
 
 This significantly improves robustness under occlusion, motion blur, and challenging viewing angles.
 
