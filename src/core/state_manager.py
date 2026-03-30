@@ -7,6 +7,9 @@ from src.modules.logging.logger import Logger
 RECOGNITION_RETRY_INTERVAL = 5.0
 RECOGNITION_RETRY_INTERVAL_UNSTABLE = 10
 RECOGNITION_RETRY_INTERVAL_STABLE = 6.0
+VEHICLE_RECOGNITION_RETRY_INTERVAL = 2.5
+VEHICLE_RECOGNITION_RETRY_INTERVAL_UNSTABLE = 0.5
+VEHICLE_RECOGNITION_RETRY_INTERVAL_STABLE = 0.5
 LEFT_MISSING_TICKS = 2
 LEFT_MISSING_TICKS_STABLE = 1
 MAX_RETRY = 3
@@ -102,11 +105,11 @@ class StateManager:
                     "data": existing
                 })
 
-            # Re-recognize định kỳ cho person kể cả khi đã recognize thành công.
+            # Re-recognize định kỳ cho person/vehicle kể cả khi đã recognize thành công.
             # Chỉ trigger khi object không còn đang được xử lý để tránh chồng job.
             retry_interval = self._get_recognition_retry_interval(existing)
             if (
-                existing.type == "person"
+                existing.type in ["person", "car", "motorcycle"]
                 and not existing.is_processing
                 and (
                     existing.last_recognized_time < 0
@@ -114,10 +117,16 @@ class StateManager:
                 )
             ):
                 existing.is_processing = True
-                events.append({
-                    "event": "new_person",
-                    "data": existing
-                })
+                if existing.type == "person":
+                    events.append({
+                        "event": "new_person",
+                        "data": existing
+                    })
+                else:
+                    events.append({
+                        "event": "new_vehicle",
+                        "data": existing
+                    })
                 
             # check người lạ đứng lâu mà không có người quen trong nhà
             # Chỉ alert khi nhận dạng đã ổn định là người lạ.
@@ -186,6 +195,14 @@ class StateManager:
         return False
 
     def _get_recognition_retry_interval(self, det: Detection) -> float:
+        if det.type in ["car", "motorcycle"]:
+            state = getattr(det, "recognition_state", "pending")
+            if state in ["stable_known", "stable_unknown"]:
+                return VEHICLE_RECOGNITION_RETRY_INTERVAL_STABLE
+            if state in ["pending", "collecting", "corrected"]:
+                return VEHICLE_RECOGNITION_RETRY_INTERVAL_UNSTABLE
+            return VEHICLE_RECOGNITION_RETRY_INTERVAL
+
         state = getattr(det, "recognition_state", "pending")
         if state in ["stable_known", "stable_unknown"]:
             return RECOGNITION_RETRY_INTERVAL_STABLE

@@ -6,7 +6,6 @@ import time
 import argparse
 import threading
 from queue import Queue as ThreadQueue, Empty, Full
-from multiprocessing import Queue, Process, Manager
 
 import cv2
 from ultralytics import YOLO
@@ -25,10 +24,20 @@ from src.event_handlers.on_new_person import on_new_person
 from src.event_handlers.on_new_vehicle import on_new_vehicle
 from src.event_handlers.on_object_left import on_object_left
 from src.event_handlers.on_stranger_stay_long import on_stranger_stay_long
-from src.modules.server.back_end.server import start_server
 from src.utils.classes import FrameData
 
 ELAPSED_STATS_PERIOD = 2
+
+
+class LocalSharedValue:
+    def __init__(self, value):
+        self._value = value
+
+    def set(self, value):
+        self._value = value
+
+    def get(self):
+        return self._value
 
 def _build_ai_pipeline():
     tracker = YOLO("models/yolo11n.pt").to("cuda")
@@ -55,7 +64,7 @@ def _build_ai_pipeline():
 
 def _camera_loop(
     cam: Camera,
-    stream_queue: Queue,
+    stream_queue: ThreadQueue,
     ai_process_queue: ThreadQueue,
     stop_event: threading.Event,
     detections_state: dict,
@@ -210,7 +219,7 @@ def _ai_process_loop(
             last_stats_at = now
 
 
-def main(camera_source, stream_queue: Queue, brightness_value, stats_value):
+def main(camera_source, stream_queue: ThreadQueue, brightness_value, stats_value):
     '''
     camera_thread loop từng frame từ camera, đặt vào ai_process_queue (nếu queue đầy thì drop frame)
     ai_process_thread lấy từ queue này để xử lý và sửa các biến share (detection, stats...)
@@ -292,12 +301,13 @@ if __name__ == "__main__":
         help='Bật chế độ debug'
     )
     args = parser.parse_args()
-    
-    manager = Manager()
+    if args.debug:
+        os.environ["VEHICLE_OCR_DEBUG"] = "1"
+        print("[DEBUG] Vehicle OCR debug is enabled (VEHICLE_OCR_DEBUG=1).")
 
-    frame_queue = Queue(maxsize=1)
-    shared_brightness = manager.Value("f", 0.0)
-    shared_stats = manager.dict(
+    frame_queue = ThreadQueue(maxsize=1)
+    shared_brightness = LocalSharedValue(0.0)
+    shared_stats = dict(
         {
             "source_fps": 0.0,
             "processing_fps": 0.0,
@@ -309,18 +319,9 @@ if __name__ == "__main__":
         }
     )
 
-    flask_process = Process(
-        target=start_server,
-        args=(frame_queue, shared_brightness, shared_stats),
-    )
-    flask_process.start()
-
     try:
+        print("Running AI pipeline only. Backend server is not started from main.py.")
         main(args.source, frame_queue, shared_brightness, shared_stats)
     except KeyboardInterrupt:
         print("Stopping main process...")
-    finally:
-        print("Stopping Flask server process...")
-        flask_process.terminate()
-        flask_process.join()
-        print("Application stopped.")
+    print("Application stopped.")

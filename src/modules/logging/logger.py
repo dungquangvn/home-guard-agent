@@ -53,16 +53,16 @@ class Logger:
 
         # Insert log data into PostgreSQL with embedding
         try:
-            print('Generating Embedding...')
+            # print('Generating Embedding...')
             embedding = self.embedder.embed_log(log_data_entry)
-            print('Embeded Successfully.')
+            # print('Embeded Successfully.')
             db_entry = {**log_data_entry, "embedding": embedding}
             # print('db entry:', db_entry)
             insert_rows(
                 table_name=self.pg_table,
                 data={k: [v] for k, v in db_entry.items()},
                 conn=self.conn,
-                debug=True,
+                debug=False,
             )
             print('Inserted Successfully.')
         except Exception as e:

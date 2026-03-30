@@ -45,11 +45,11 @@ class FrameData:
         self.objects: List[Detection] = []  # Các đối tượng detect/recognize
         
     def draw_object(self, detection: Detection):
-        if detection.type == "person" and detection.recognition_state in ["pending", "collecting"]:
+        if detection.type in ["person", "car", "motorcycle"] and detection.recognition_state in ["pending", "collecting"]:
             color = (0, 255, 255)   # Yellow: pending recognize
-        elif detection.type == "person" and detection.recognition_state == "corrected":
+        elif detection.type in ["person", "car", "motorcycle"] and detection.recognition_state == "corrected":
             color = (0, 165, 255)   # Orange: corrected
-        elif detection.type == "person" and detection.recognition_state == "stable_unknown":
+        elif detection.type in ["person", "car", "motorcycle"] and detection.recognition_state == "stable_unknown":
             color = (0, 0, 255)     # Red: stranger
         else:
             color = (0, 255, 0)  # Green: normal
@@ -74,20 +74,22 @@ class FrameData:
                 label = f"human | name: unknown | {detection.confidence:.2f}"
             else:
                 label = f"human | name: unknown"
-        elif detection.type == 'motorcycle':
-            if detection.is_processing:
-                label = f"motorcycle | pending"
-            elif detection.is_recognized:
-                label = f"motorcycle | plate number: {detection.plate_number} | {detection.confidence:.2f}"
+        elif detection.type in ['motorcycle', 'car']:
+            vehicle_type = detection.type
+            if detection.recognition_state == "pending":
+                label = f"{vehicle_type} | pending"
+            elif detection.recognition_state == "collecting":
+                votes = len(detection.recognition_history)
+                label = f"{vehicle_type} | collected {votes} plates..."
+            elif detection.recognition_state in ["stable_known", "corrected"]:
+                label = (
+                    f"{vehicle_type} | plate number: {detection.plate_number} "
+                    f"| id: {detection.identity_id} | {detection.confidence:.2f}"
+                )
+            elif detection.recognition_state == "stable_unknown":
+                label = f"{vehicle_type} | plate number: unknown | {detection.confidence:.2f}"
             else:
-                label = f"motorcycle | plate number: unknown"
-        elif detection.type == 'car':
-            if detection.is_processing:
-                label = f"car | pending"
-            elif detection.is_recognized:
-                label = f"car | plate number: {detection.plate_number} | {detection.confidence:.2f}"
-            else:
-                label = f"car | plate number: unknown"
+                label = f"{vehicle_type} | plate number: unknown"
         elif detection.type == 'bicycle':
             label = f"bicycle"
 

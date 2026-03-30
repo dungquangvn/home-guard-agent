@@ -18,6 +18,8 @@ Argus supports both video files and live camera streams.
 ### License Plate OCR
 - Extracts vehicle license plate numbers from frames
 
+![alt text](readme_images/ocr_gif.gif)
+
 ### Behavior Tracking
 - Tracks dwell time and movement patterns per tracked object  
 - Triggers alerts for high-risk behavior (currently supports prolonged presence of unknown individuals)
